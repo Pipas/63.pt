@@ -1,0 +1,31 @@
+:root {
+  --63green: #00A878;
+}
+
+html {
+  height: 100vh;
+  width: 100vw;
+}
+
+body {
+  background-color: var(--63green);
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.logo-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  height: 33vh;
+  width: 33vw;
+  object-fit: contain;
+  margin: auto;
+}
