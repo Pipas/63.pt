@@ -1,10 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap");
+
 :root {
-  --63green: #00A878;
+  --63green: #00a878;
 }
 
-html {
-  height: 100vh;
-  width: 100vw;
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 body {
@@ -15,17 +23,125 @@ body {
   margin: 0;
 }
 
-.logo-wrapper {
-  height: 100%;
-  width: 100%;
+h2 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+}
+
+section.logo-section {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+section.button-section {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.main-content {
+  height: 100%;
+  width: 100%;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.button-wrapper {
+  height: 80px;
+  width: 100%;
+  gap: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: row;
+}
+
+.button-wrapper img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
 .logo {
-  height: 33vh;
-  width: 33vw;
+  height: 264px;
   object-fit: contain;
-  margin: auto;
+}
+
+.disclaimer {
+  padding: 0;
+}
+
+.disclaimer p {
+  font-family: "Fredoka", sans-serif;
+  font-size: 12px;
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.app-store-button {
+  position: relative;
+  cursor: not-allowed;
+}
+
+.app-store-button img {
+  opacity: 0.28;
+}
+
+.app-store-button p {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 8px;
+  border-radius: 8px;
+  font-weight: 400;
+  font-family: "Fredoka", sans-serif;
+  font-weight: 500;
+  color: white;
+  background-color: #E31717;
+  transform: translate(20%, -20%) rotate(7deg);
+}
+
+@media only screen and (max-width: 600px) {
+  .disclaimer {
+    margin-top: 48px;
+  }
+
+  .logo {
+    height: unset;
+    width: 60vw;
+  }
+
+  .main-content {
+    padding: 12px 24px;
+  }
+
+  .button-wrapper {
+    height: unset;
+    flex-direction: column;
+  }
+
+  section.logo-section {
+    flex: 2;
+  }
+
+  section.button-section {
+    flex: 1;
+    padding: 0 24px;
+  }
 }
