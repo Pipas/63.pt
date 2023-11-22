@@ -41,7 +41,7 @@ section.logo-section {
   flex: 3;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   gap: 24px;
 }
@@ -132,6 +132,10 @@ section.button-section {
 
   section.button-section {
     padding: 0;
+  }
+
+  section.logo-section {
+    gap: 8px;
   }
 
   .disclaimer p {
