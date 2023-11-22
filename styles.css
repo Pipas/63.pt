@@ -23,14 +23,18 @@ body {
   margin: 0;
 }
 
-h2 {
+h2.card {
   font-family: "Fredoka", sans-serif;
   font-size: 24px;
-  color: white;
+  color: black;
+  background-color: #ECFDF8;
+  border-radius: 16px;
   text-align: center;
   margin: 0;
-  padding: 0;
-  font-weight: 500;
+  padding: 8px 32px;
+  font-weight: 600;
+  box-shadow: 0px 8px 3px 0px rgba(0, 0, 0, 0.12);
+  transform: rotate(-2deg);
 }
 
 section.logo-section {
@@ -39,7 +43,7 @@ section.logo-section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
 }
 
 section.button-section {
@@ -91,30 +95,6 @@ section.button-section {
   text-align: center;
   margin: 0;
   padding: 0;
-}
-
-.app-store-button {
-  position: relative;
-  cursor: not-allowed;
-}
-
-.app-store-button img {
-  opacity: 0.28;
-}
-
-.app-store-button p {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  padding: 8px;
-  border-radius: 8px;
-  font-weight: 400;
-  font-family: "Fredoka", sans-serif;
-  font-weight: 500;
-  color: white;
-  background-color: #E31717;
-  transform: translate(20%, -20%) rotate(7deg);
 }
 
 @media only screen and (max-width: 600px) {
