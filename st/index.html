@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>63</title>
+  <meta name="viewport" content="width=device-width" />
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="63" />
+  <meta
+    name="description"
+    content="The classic word guessing game, now in your pocket!"
+  />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://63.pt/" />
+  <meta property="og:title" content="63" />
+  <meta
+    property="og:description"
+    content="The classic word guessing game, now in your pocket!"
+  />
+  <meta property="og:image" content="https://63.pt/assets/meta_preview.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://63.pt/" />
+  <meta property="twitter:title" content="63" />
+  <meta
+    property="twitter:description"
+    content="The classic word guessing game, now in your pocket!"
+  />
+  <meta
+    property="twitter:image"
+    content="https://63.pt/assets/meta_preview.png"
+  />
+
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="../assets/apple-touch-icon.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="../assets/favicon-32x32.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="../assets/favicon-16x16.png"
+  />
+  <link rel="manifest" href="../assets/site.webmanifest" />
+</head>
+<body>
+    <script>
+      function getMobileOperatingSystem() {
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        // Android detection
+        if (/android/i.test(userAgent)) {
+          return "Android";
+        }
+
+        // iOS detection
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+          return "iOS";
+        }
+
+        return "other";
+      }
+
+      window.onload = function() {
+        var os = getMobileOperatingSystem();
+
+        if (os === "Android") {
+          window.location.href = "https://play.google.com/store/apps/details?id=pt.app63";
+        } else if (os === "iOS") {
+          window.location.href = "https://apps.apple.com/us/app/63/id6449913779";
+        } else {
+          window.location.href = "https://63.pt";
+        }
+      }
+    </script>
+</body>
+</html>
