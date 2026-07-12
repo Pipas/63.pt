@@ -1,0 +1,12 @@
+[
+  { "title": "Sozinho em Casa", "description": "Filme de Natal sobre um miúdo esquecido — o Macaulay Culkin!", "points": 2, "color": "#6CD4FF" },
+  { "title": "Cristiano Ronaldo", "description": "SIUUU! Futebol, Portugal, o número sete.", "points": 3, "color": "#1F5239" },
+  { "title": "Pizza", "description": "Italiana, redonda, às fatias, com queijo.", "points": 1, "color": "#DD3636" },
+  { "title": "Titanic", "description": "O navio, o icebergue, o Jack e a Rose.", "points": 2, "color": "#222B57" },
+  { "title": "Salgados", "description": "Rissol, croquete, bola de Berlim no café.", "points": 2, "color": "#D69960" },
+  { "title": "Harry Potter", "description": "O feiticeiro miúdo, Hogwarts, a cicatriz.", "points": 2, "color": "#FF7733" },
+  { "title": "Bacalhau", "description": "O fiel amigo — 1001 maneiras de o cozinhar.", "points": 1, "color": "#3FB57F" },
+  { "title": "Amália Rodrigues", "description": "A rainha do fado, a voz de Portugal.", "points": 3, "color": "#6931D0" },
+  { "title": "Batman", "description": "O cavaleiro das trevas de Gotham. Nananana!", "points": 2, "color": "#FEEA00" },
+  { "title": "Pastel de Nata", "description": "Doce, folhado, com canela por cima.", "points": 1, "color": "#A92020" }
+]

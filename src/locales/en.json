@@ -1,0 +1,114 @@
+{
+  "lang": "en",
+  "dir": "ltr",
+  "langName": "English",
+  "meta": {
+    "title": "63: your new favourite party game",
+    "description": "63 is a party word-guessing game. Two teams, 63-second turns, three rounds. Free on iOS and Android, with packs.63.pt for building your own decks."
+  },
+  "nav": {
+    "how": "How to play",
+    "packs": "Packs",
+    "get": "Get the app",
+    "cta": "Play now"
+  },
+  "hero": {
+    "pills": ["Free · no paywalls", "Party · 3+ players", "iOS &amp; Android"],
+    "taglineTop": "Your new favourite",
+    "taglineBottom": "party game.",
+    "sub": "One phone, two teams. Get your team to guess as many cards as you can — 63 seconds at a time.",
+    "skipLabel": "Skip"
+  },
+  "facts": {
+    "phone": "phone",
+    "teams": "teams",
+    "rounds": "rounds, same deck",
+    "seconds": "seconds per turn",
+    "packs": "community packs"
+  },
+  "how": {
+    "eyebrow": "How to play",
+    "titleTop": "The cards stay the same.",
+    "titleBottom": "The rules get harder.",
+    "lead": "Teams take turns getting their teammates to guess cards but with each round the rules change.",
+    "roundWord": "Round",
+    "exampleFor": "For “Home Alone”",
+    "rounds": [
+      {
+        "title": "Say (almost) anything.",
+        "body": "You can't use the words from the card's title, but everything else is fair game.",
+        "clue": "\"Christmas movie about being left solo in a house… with Macaulay Culkin!\""
+      },
+      {
+        "title": "Only one word.",
+        "body": "No gestures, no sounds, no title words. You get exactly one word to nail it.",
+        "clue": "\"Kevin!\""
+      },
+      {
+        "title": "No words at all.",
+        "body": "Gestures and sounds only. By now you know every card — good luck miming it.",
+        "clue": "😱"
+      }
+    ]
+  },
+  "make": {
+    "new": "NEW",
+    "companion": "A web companion for 63",
+    "titleTop": "Build your own packs",
+    "titleBottom": "on",
+    "lead": "Inside jokes, your friend group, a stag night deck. Write cards in the browser, co-write with friends, and share with a link.",
+    "noInstall": "no install required",
+    "features": [
+      {
+        "title": "Create",
+        "body": "Write your own cards in the browser. Set difficulty, add descriptions, pick an icon and a language for the pack."
+      },
+      {
+        "title": "Collaborate",
+        "body": "Write with as many people as you want — everyone adds cards in real time, and you control who can edit and who can just view."
+      },
+      {
+        "title": "Share",
+        "body": "Send your pack to a friend with a link, or publish it for everyone — it opens straight in the app, and likes and play counts roll back to you."
+      }
+    ]
+  },
+  "community": {
+    "eyebrow": "Community packs",
+    "titleTop": "Endless packs,",
+    "titleBottom": "made by players.",
+    "lead": "Decks made by the community, in multiple languages, with new ones landing all the time. Add as many as you like and mix them into the same game.",
+    "free": "Every pack is free. No paywalls.",
+    "cardsWord": "cards",
+    "tiles": [
+      { "name": "Video Games", "cards": 110, "likes": 23 },
+      { "name": "O Pack do João", "cards": 20, "flag": "🇵🇹" },
+      { "name": "Superheroes", "cards": 12, "flag": "🇬🇧" },
+      { "name": "Classic Cars", "cards": 12 },
+      { "name": "Comida Portuguesa", "cards": 12, "flag": "🇵🇹" },
+      { "name": "Deportes Famosos", "cards": 12, "flag": "🇪🇸" }
+    ]
+  },
+  "final": {
+    "kicker": "Round up your friends.",
+    "title": "Download now.",
+    "sub": "Free on iOS and Android. No accounts, no paywalls."
+  },
+  "footer": {
+    "blurb": "Your new favourite party game.<br />Made in Porto <span style=\"font-style: normal;\">🇵🇹</span>",
+    "gameHeading": "The Game",
+    "gameLinks": {
+      "how": "How to play",
+      "community": "Community packs"
+    },
+    "packsHeading": "Make Packs",
+    "packsBlurb": "Write your own decks in the browser and share them with your friends.",
+    "privacy": "Privacy policy",
+    "terms": "Terms &amp; conditions",
+    "legal": "Google Play and the Google Play logo are trademarks of Google LLC. App Store and the Apple logo are trademarks of Apple Inc."
+  },
+  "sticky": {
+    "text": "<b>63</b> · free on iOS &amp; Android",
+    "cta": "Get the app"
+  }
+}

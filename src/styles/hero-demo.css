@@ -1,0 +1,347 @@
+/* ── Hero in-game demo ───────────────────────────────
+   A faithful recreation of the app's game screen. Sizes are driven
+   by --u (the card unit = 5% of the card height, mirroring the
+   Flutter LayoutBuilder), set on #hgame-deck by JS on load/resize. */
+
+/* Registered so the reveal circle's radius can animate via a CSS
+   transition (custom properties are only animatable once typed). */
+@property --gr {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0%;
+}
+@property --sr {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0%;
+}
+
+/* Red theme (redTheme.dart): flat theme colour, no pattern. */
+.hgame-phone .screen {
+  /* The game paints its own background; no photo underneath. */
+  background: #ff4e4e;
+}
+
+/* Clipped background layer: just the flat theme colour. Stays inside the
+   rounded frame even when cards burst out (which only lifts overflow on
+   .screen, not here). */
+.hbg {
+  position: absolute;
+  inset: 0;
+  border-radius: 36px;
+  overflow: hidden;
+  background: #ff4e4e;
+}
+
+/* Content layer. overflow is visible so the flying card can escape;
+   only .screen (mobile) actually lets it leave the frame. */
+.hgame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  font-family: "Fredoka", sans-serif;
+  color: var(--white);
+}
+
+/* Timer pane hanging from the top center. A flex item (like the buttons
+   at the bottom), so the body between them centers the deck on its own —
+   no padding hacks. Proportions match the app's timer.dart: width 128,
+   number 64, bottom radius 64 (= half width → a semicircular bottom). */
+.hgame-timer {
+  align-self: center;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: calc(var(--u, 12px) * 5.1);
+  padding: calc(var(--u, 12px)) calc(var(--u, 12px) * 0.8)
+    calc(var(--u, 12px) * 1);
+  background: var(--white);
+  border-radius: 0 0 calc(var(--u, 12px) * 2.55) calc(var(--u, 12px) * 2.55);
+  /* App shadow (mediumBoxShadow): a hard, blur-less ledge straight down,
+     very faint — not a soft blur. */
+  box-shadow: 0 calc(var(--u, 12px) * 0.32) 0 rgba(0, 0, 0, 0.07);
+  text-align: center;
+  z-index: 30;
+}
+.hgame-timer .t {
+  font-family: "Fredoka One", "Fredoka", sans-serif;
+  font-size: calc(var(--u, 12px) * 2.55);
+  line-height: 1;
+  color: #111;
+  /* Centered full-width box so 1 and 2 digits share one footprint — the
+     pane never resizes as the count drops. */
+  display: block;
+  width: 100%;
+  text-align: center;
+  transform-origin: 50% 50%;
+  transition: transform 0.18s ease;
+}
+.hgame-timer.low .t {
+  color: var(--red);
+}
+/* The pop only happens in the final 10 seconds (JS gates the class). */
+.hgame-timer.tick .t {
+  transform: scale(1.28);
+}
+
+/* The timer and buttons each take their own space at the top and bottom;
+   the body is the flex remainder between them and simply centers the
+   counter+deck block — so the card lands midway between the two. */
+.hgame-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+.hgame-center {
+  width: var(--card-w, 200px);
+}
+
+/* Deck: a stacking context sized to the top card plus the peek of the
+   cards behind it. Cards are absolutely positioned within. */
+.hdeck {
+  position: relative;
+  width: var(--card-w, 200px);
+  height: calc(var(--card-h, 300px) + var(--stack, 4px) * var(--peek, 4));
+}
+
+.hcard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--card-w, 200px);
+  height: var(--card-h, 300px);
+  padding: calc(var(--u) * 3.4) calc(var(--u) * 1.4) calc(var(--u) * 1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  color: #111;
+  border-radius: var(--u);
+  overflow: hidden;
+  /* App tinyBoxShadow: a faint, near-sharp ledge just below the card —
+     6% black, barely any blur. The old soft 22px shadow was far heavier
+     than anything in the app. */
+  box-shadow: 0 2px 1.5px rgba(0, 0, 0, 0.06);
+  /* Stack by vertical offset only — no scale, so a card never changes
+     size (matches the app's swipe stack, which only translates). */
+  transform: translateY(calc(var(--d, 0) * var(--stack, 4px)));
+  transform-origin: 50% 22%;
+  transition: transform 0.5s cubic-bezier(0.36, 0, 0.66, -0.2),
+    opacity 0.3s ease;
+  will-change: transform;
+}
+/* Top card gets the app's topCardShadow: a touch tighter offset with a
+   1px spread, so it reads as lifted off the stack. */
+.hcard.is-top {
+  box-shadow: 0 1px 1.5px 1px rgba(0, 0, 0, 0.06);
+}
+.hcard.buried {
+  opacity: 0;
+}
+.hcard.no-anim {
+  transition: none !important;
+}
+
+.hcard-title {
+  font-size: var(--u);
+  font-weight: 600;
+  line-height: 1.05;
+}
+.hcard-desc {
+  margin-top: calc(var(--u) * 0.5);
+  font-size: calc(var(--u) * 0.66);
+  font-weight: 400;
+  line-height: 1.25;
+}
+.hcard-pack {
+  margin-top: auto;
+  text-align: center;
+  font-size: calc(var(--u) * 0.58);
+  font-weight: 300;
+  color: #b8b8b8;
+  letter-spacing: 0.02em;
+}
+
+/* Point indicator: a coloured square with two rounded corners, the
+   points number in Fredoka One, and a small hexagon. Sits on top of
+   the reveal so the number stays legible as the colour floods in. */
+.hcard-points {
+  position: absolute;
+  /* Bleed 8px past the top-right so the card's own clip (overflow:hidden,
+     radius --u) is what shapes the corner — on a solid fill, not on the
+     badge's own square edge, which was leaving an antialiased seam that
+     flashed the white card behind during the guess rotate/scale. The
+     extra 8px is added as padding too (box-sizing: border-box), so the
+     number and the visible colour block stay exactly where they were. */
+  box-sizing: border-box;
+  top: -8px;
+  right: -8px;
+  width: calc(var(--u) * 3 + 8px);
+  height: calc(var(--u) * 3 + 8px);
+  padding-top: 8px;
+  padding-right: 8px;
+  border-radius: 0 0 0 var(--u);
+  background: var(--card-color, var(--yellow));
+  color: var(--card-ink, #4b230d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--u) * 0.12);
+  z-index: 5;
+  transform-origin: 60% 40%;
+  transition: transform 0.36s ease-in;
+}
+.hcard-points .pnum {
+  font-family: "Fredoka One", "Fredoka", sans-serif;
+  font-size: calc(var(--u) * 1.2);
+  line-height: 1;
+}
+.hcard-points .hex {
+  width: calc(var(--u) * 0.85);
+  height: calc(var(--u) * 0.85);
+}
+.hcard.guessing .hcard-points {
+  transform: translate(calc(var(--u) * -0.4), calc(var(--u) * 0.2))
+    rotate(-10deg) scale(1.55);
+}
+
+/* Reveal overlays: an expanding circle clips both the colour fill and
+   the centered label, so the label only shows where the colour has
+   reached — exactly the app's GuessReveal / SkipReveal. */
+.reveal {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: var(--u);
+  overflow: hidden;
+  z-index: 3;
+}
+.reveal .fill {
+  position: absolute;
+  inset: 0;
+}
+.reveal .label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.reveal.guess .fill {
+  background: var(--card-color, var(--yellow));
+  clip-path: circle(
+    var(--gr) at calc(100% - var(--u) * 1.5) calc(var(--u) * 1.5)
+  );
+}
+.reveal.guess .label {
+  color: var(--card-ink, #4b230d);
+  clip-path: circle(
+    var(--gr) at calc(100% - var(--u) * 1.5) calc(var(--u) * 1.5)
+  );
+}
+.reveal.guess .label svg {
+  /* App GuessReveal: iconSize = cardUnit * 8, i.e. 8u (cardUnit == --u).
+     A percentage of the card was constraining it to ~6u — smaller than
+     the app's check. */
+  width: calc(var(--u) * 8);
+  height: calc(var(--u) * 8);
+}
+/* Skip reveal sits ABOVE the point indicator (z 6 > 5), so it covers the
+   points too — like the app, where SkipReveal is painted after it. */
+.reveal.skip {
+  z-index: 6;
+}
+.reveal.skip .fill {
+  background: #f5b400;
+  clip-path: circle(var(--sr) at 0% 100%);
+}
+.reveal.skip .label {
+  color: var(--white);
+  clip-path: circle(var(--sr) at 0% 100%);
+  font-weight: 800;
+  /* App SkipReveal: fontSize = cardWidth * 0.3, uppercase "SKIP". */
+  font-size: calc(var(--card-w, 200px) * 0.3);
+  line-height: 1;
+  letter-spacing: calc(var(--card-w, 200px) * 0.01);
+  text-transform: uppercase;
+}
+
+/* The reveal radii (--gr / --sr) are grown by JS on the committing card
+   via requestAnimationFrame, so the flood tracks a real ease-in curve
+   (CSS transitions on registered custom properties proved unreliable). */
+
+/* The swing-off. Pivot near the top edge so the bottom swings out in
+   the swipe direction, mirroring the app's tap swipe. */
+.hcard.fly-right {
+  transform: translate(200%, 0) rotate(-22deg);
+  transition: transform 0.5s cubic-bezier(0.5, 0, 0.75, 0);
+}
+.hcard.fly-left {
+  transform: translate(-200%, 0) rotate(22deg);
+  transition: transform 0.5s cubic-bezier(0.5, 0, 0.75, 0);
+}
+
+/* Buttons. */
+.hgame-buttons {
+  display: flex;
+  gap: calc(var(--u, 12px) * 0.6);
+  padding: calc(var(--u, 12px) * 0.8) calc(var(--u, 12px) * 1.4)
+    calc(var(--u, 12px) * 1.5);
+}
+.hbtn {
+  flex: 1;
+  height: calc(var(--u, 12px) * 2.7);
+  border: 0;
+  cursor: default;
+  font-family: "Fredoka", sans-serif;
+  font-weight: 600;
+  /* App Button: fontSize 28 on an 80-tall button = 0.35× its height.
+     Our button is 2.7u tall, so the label is 0.35 × 2.7 ≈ 0.95u. */
+  font-size: calc(var(--u, 12px) * 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Same hard, blur-less ledge as the app's Button. */
+  box-shadow: 0 calc(var(--u, 12px) * 0.32) 0 rgba(0, 0, 0, 0.07);
+  transition: transform 0.12s ease;
+}
+.hbtn.skip {
+  background: #672727; /* redTheme accentColor */
+  color: var(--white);
+  border-radius: calc(var(--u) * 2) calc(var(--u) * 0.7)
+    calc(var(--u) * 0.7) calc(var(--u) * 2);
+}
+.hbtn.guess {
+  background: var(--white);
+  color: #111;
+  border-radius: calc(var(--u) * 0.7) calc(var(--u) * 2)
+    calc(var(--u) * 2) calc(var(--u) * 0.7);
+}
+.hbtn.guess svg {
+  width: calc(var(--u) * 1.7);
+  height: calc(var(--u) * 1.7);
+}
+/* Pressed: sink into the ledge (down by the shadow offset, shadow
+   collapses) — the app's click behaviour. */
+.hbtn.press {
+  transform: translateY(calc(var(--u, 12px) * 0.32));
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.07);
+}
+
+/* On phones, let a swung card burst out past the phone frame. The
+   background/timer/buttons stay put (clipped by .hbg). */
+@media (max-width: 880px) {
+  .hgame-phone .screen {
+    overflow: visible;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hcard {
+    transition: none;
+  }
+}

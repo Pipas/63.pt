@@ -1,0 +1,209 @@
+/* ── v3-only styles ─────────────────────────────── */
+
+/* Footer language switcher: sits inline in the legal line, so it inherits the
+   quiet legal styling. The current language is un-linked and slightly brighter. */
+.lang-switch {
+  white-space: nowrap;
+}
+.lang-switch a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.lang-switch .lang-current {
+  opacity: 1;
+  font-weight: 500;
+}
+
+/* Community section has no screenshot in v3 — single column. */
+.section.community {
+  grid-template-columns: 1fr;
+  max-width: 760px;
+}
+
+/* The packs.63.pt section sits on the deeper green so the NEW
+   feature reads as its own block (and the yellow headline pops). */
+.bg-green-deeper {
+  background: var(--green-deeper);
+  color: var(--white);
+}
+
+/* Hero: tagline is the h1 now; the 63 is decoration. */
+.hero .logo-giant {
+  font-size: clamp(140px, 20vw, 300px);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+  color: var(--white);
+  margin: 10px 0 0;
+}
+.hero h1.tagline {
+  font-size: clamp(30px, 3.4vw, 46px);
+  margin: 20px 0 10px;
+}
+.hero .sub {
+  font-size: 20px;
+  max-width: 480px;
+  opacity: 1;
+}
+
+/* Round cards: a small "Round" kicker centered over the big digit. */
+.round .r-num {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: flex-start;
+  font-size: 108px;
+  line-height: 0.9;
+}
+.round .r-word {
+  font-size: 16px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.8;
+}
+.round .r-digit {
+  letter-spacing: normal;
+  margin-top: -6px;
+}
+
+/* Round-card example clues: quiet footnote pinned to the card
+   bottom — a hairline divider instead of the boxed panel. */
+/* Heading + description share a fixed-height block so the divider
+   below always starts at the same line, no matter how the text
+   wraps. This is what keeps the three cards aligned. */
+.round .r-copy {
+  min-height: 132px;
+}
+.round .example {
+  background: none;
+  border-radius: 0;
+  /* Fixed gap above the divider — anchored from the top, so it
+     never changes when the description wraps. */
+  margin-top: 20px;
+  padding: 14px 0 0;
+  border-top: 1px dashed rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+  color: inherit;
+}
+.round.r3 .example {
+  background: none;
+  color: inherit;
+  border-top-color: rgba(255, 255, 255, 0.4);
+}
+.round .example .label {
+  opacity: 0.65;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 13px;
+}
+.round .example .clue {
+  font-weight: 400;
+  opacity: 0.85;
+  letter-spacing: -0.005em;
+}
+.round.r3 .example .clue {
+  font-size: 22px;
+  opacity: 1;
+}
+.round h3 {
+  margin: 8px 0;
+}
+
+/* Final CTA confetti: rotated paper bits with a gentle drift,
+   instead of static dots. */
+.final .confetti span {
+  width: 14px;
+  height: 8px;
+  border-radius: 2px;
+  opacity: 0.55;
+  transform: rotate(var(--r, 0deg));
+  animation: confetti-drift 4s ease-in-out infinite alternate;
+}
+@keyframes confetti-drift {
+  to {
+    transform: translateY(12px) rotate(calc(var(--r, 0deg) + 18deg));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .final .confetti span {
+    animation: none;
+  }
+}
+
+/* Footer: single real destination for packs, legal links inline. */
+.footer .url-bubble {
+  font-size: 18px;
+  padding: 10px 18px;
+  margin-top: 14px;
+}
+.footer-blurb {
+  font-size: 16px;
+  opacity: 0.8;
+  margin: 0;
+  max-width: 260px;
+  line-height: 1.4;
+}
+.legal a {
+  color: inherit;
+}
+
+@media (max-width: 880px) {
+  /* Keep the packs.63.pt phone collage fully on-screen. */
+  .packs-phones .phone.back {
+    transform: translate(-88%, -50%) rotate(-6deg);
+  }
+  .packs-phones .phone.front {
+    transform: translate(-12%, -38%) rotate(5deg);
+  }
+}
+
+@media (max-width: 540px) {
+  /* Both store badges fit on one row. */
+  .store-btn img {
+    height: 48px;
+  }
+}
+
+/* Sticky mobile CTA */
+.sticky-cta {
+  display: none;
+}
+@media (max-width: 880px) {
+  .sticky-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    z-index: 20;
+    background: var(--green-deeper);
+    color: var(--white);
+    border-radius: var(--r-pill);
+    padding: 10px 12px 10px 22px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transform: translateY(calc(100% + 24px));
+    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .sticky-cta.visible {
+    transform: translateY(0);
+  }
+  .sticky-cta .txt {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.2;
+    min-width: 0;
+  }
+  .sticky-cta .txt b {
+    font-weight: 600;
+  }
+  .sticky-cta .btn {
+    padding: 10px 20px;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+}

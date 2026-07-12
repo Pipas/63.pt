@@ -40,6 +40,76 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
     <link rel="manifest" href="/assets/site.webmanifest" />
+
+    <style>
+      /* ── v2-only styles ─────────────────────────────── */
+
+      /* Captioned screenshots in the tour strip */
+      .shots-strip figure {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+      }
+      .shots-strip figcaption {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--grey-dark);
+        text-align: center;
+      }
+      @media (max-width: 880px) {
+        .shots-strip figure {
+          scroll-snap-align: center;
+          flex-shrink: 0;
+        }
+        .shots-strip figure .phone {
+          scroll-snap-align: none;
+        }
+      }
+
+      /* Sticky mobile CTA */
+      .sticky-cta {
+        display: none;
+      }
+      @media (max-width: 880px) {
+        .sticky-cta {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 14px;
+          position: fixed;
+          left: 12px;
+          right: 12px;
+          bottom: 12px;
+          z-index: 20;
+          background: var(--green-deeper);
+          color: var(--white);
+          border-radius: var(--r-pill);
+          padding: 10px 12px 10px 22px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+          transform: translateY(calc(100% + 24px));
+          transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .sticky-cta.visible {
+          transform: translateY(0);
+        }
+        .sticky-cta .txt {
+          font-size: 15px;
+          font-weight: 500;
+          line-height: 1.2;
+          min-width: 0;
+        }
+        .sticky-cta .txt b {
+          font-weight: 600;
+        }
+        .sticky-cta .btn {
+          padding: 10px 20px;
+          font-size: 15px;
+          flex-shrink: 0;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="page">
@@ -53,7 +123,7 @@
             <a href="#packs">Packs <span class="badge-new">NEW</span></a>
             <a href="#get">Get the app</a>
           </nav>
-          <a href="#get" class="btn primary" style="padding: 10px 20px; font-size: 15px;">Play now</a>
+          <a href="#get" class="btn primary js-store-cta" style="padding: 10px 20px; font-size: 15px;">Play now</a>
         </div>
       </header>
 
@@ -71,12 +141,13 @@
         <div class="hero-inner">
           <div>
             <div class="pill-row">
-              <span class="pill solid">Party · 3+ players</span>
-              <span class="pill">Free · iOS &amp; Android</span>
+              <span class="pill solid">Free · everything unlocked</span>
+              <span class="pill">Party · 3+ players</span>
+              <span class="pill">iOS &amp; Android</span>
             </div>
             <h1 class="logo63 logo">63</h1>
-            <p class="tagline">63 seconds to guess.<br />Endless cards.</p>
-            <p class="sub">The party guessing game for friends and family. All you need is one phone, a whole party in your pocket.</p>
+            <p class="tagline">Your new favourite<br />party game.</p>
+            <p class="sub">One phone, two teams. Get your team to guess as many cards as you can — 63 seconds at a time.</p>
             <div class="stores">
               <a class="store-btn play" href="https://play.google.com/store/apps/details?id=pt.app63" aria-label="Get it on Google Play">
                 <img src="assets/google_play_badge.png" alt="Get it on Google Play" />
@@ -97,11 +168,13 @@
         </div>
 
         <div class="facts">
+          <span class="fact"><b>1</b>&nbsp;phone</span>
+          <span class="sep"></span>
           <span class="fact"><b>2</b>&nbsp;teams</span>
           <span class="sep"></span>
-          <span class="fact"><b>63</b>&nbsp;seconds per turn</span>
-          <span class="sep"></span>
           <span class="fact"><b>3</b>&nbsp;rounds, same deck</span>
+          <span class="sep"></span>
+          <span class="fact"><b>63</b>&nbsp;seconds per turn</span>
           <span class="sep"></span>
           <span class="fact"><b>∞</b>&nbsp;community packs</span>
         </div>
@@ -111,7 +184,7 @@
       <section class="section bg-white" id="how">
         <span class="eyebrow">How to play</span>
         <h2 class="section-title">The cards stay the same.<br /><span class="underline-yellow">The rules get harder.</span></h2>
-        <p class="section-lead">Two teams take turns guessing cards over three rounds. Each round is played over several turns. A player holds the phone and has 63 seconds to make their team guess as many cards as possible.</p>
+        <p class="section-lead">Teams take turns getting their teammates to guess cards. The deck stays the same all game — what changes each round is how you're allowed to give clues.</p>
 
         <div class="rounds">
           <article class="round r1">
@@ -136,76 +209,11 @@
           </article>
         </div>
 
-        <p style="margin-top: 36px; font-size: 16px; color: var(--grey-dark); max-width: 700px;">
-          Every card guessed is worth a point. Add up all three rounds, and the team with the most points wins the game.
-        </p>
-      </section>
-
-      <!-- PACKS · NEW -->
-      <section class="bg-green" id="packs" style="padding: 96px 0;">
-        <div style="max-width: 1280px; margin: 0 auto; padding: 0 32px;">
-          <div class="packs-hero">
-            <div class="copy">
-              <div class="packs-tags">
-                <span class="pill red"><b style="font-weight: 600;">NEW</b></span>
-                <span class="pill">A web companion for 63</span>
-              </div>
-              <h2 class="section-title">Build your own packs<br />on <span style="color: var(--yellow);">packs.63.pt</span></h2>
-              <p class="section-lead" style="color: rgba(255, 255, 255, 0.9);">
-                Write your own cards, invite friends to co-write with you, then publish your pack to the 63 community. Sign in once, share by code, play in seconds.
-              </p>
-              <div class="packs-url">
-                <a href="https://packs.63.pt" class="url-bubble">
-                  packs.63.pt <span class="arrow">→</span>
-                </a>
-                <span style="opacity: 0.8; font-size: 15px;">no install required</span>
-              </div>
-            </div>
-            <div class="packs-phones">
-              <div class="phone back">
-                <div class="island" aria-hidden="true"></div>
-                <div class="screen">
-                  <img src="assets/shot-web-publish.png" alt="Publishing a pack and getting a 4-letter share code" />
-                </div>
-              </div>
-              <div class="phone front">
-                <div class="island" aria-hidden="true"></div>
-                <div class="screen">
-                  <img src="assets/shot-web-cards.png" alt="Editing a pack on packs.63.pt" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="packs-features">
-            <div class="pf">
-              <div class="icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"/><path d="M13.5 6.5l4 4"/></svg>
-              </div>
-              <h4>Create</h4>
-              <p>Write your own cards in the browser. Set difficulty, add descriptions, pick an icon and a language for the pack.</p>
-            </div>
-            <div class="pf">
-              <div class="icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"/><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M17 10h2a2 2 0 0 1 2 2v1"/><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M3 13v-1a2 2 0 0 1 2 -2h2"/></svg>
-              </div>
-              <h4>Collaborate</h4>
-              <p>Invite friends to edit alongside you. Real-time co-writing, perfect for inside jokes or a stag night deck.</p>
-            </div>
-            <div class="pf">
-              <div class="icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M15 6a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M15 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M8.7 10.7l6.6 -3.4"/><path d="M8.7 13.3l6.6 3.4"/></svg>
-              </div>
-              <h4>Share</h4>
-              <p>Publish to the community, send a 4-letter code, or open directly in the app. Likes and play counts roll back to you.</p>
-            </div>
-          </div>
-        </div>
       </section>
 
       <!-- COMMUNITY PACKS -->
-      <section class="section bg-white">
-        <div class="community">
+      <section class="bg-paper" id="packs">
+        <div class="section community">
           <div class="phone">
             <div class="island" aria-hidden="true"></div>
             <div class="screen">
@@ -213,9 +221,9 @@
             </div>
           </div>
           <div>
-            <span class="eyebrow">Endless decks</span>
-            <h2 class="section-title">Play what the community<br />is making.</h2>
-            <p class="section-lead">Hundreds of packs from real players: video games, classic cars, superheroes, historical figures. Sort by popular or new, filter by language, hit add and play.</p>
+            <span class="eyebrow">Community packs</span>
+            <h2 class="section-title">Endless packs,<br />made by players.</h2>
+            <p class="section-lead">If you can think of it, there's probably a pack of it — decks from real players, in multiple languages, with new ones landing all the time. Hit add and play.</p>
             <p class="free-callout">
               <span class="check">✓</span>
               Every pack is free. Everything unlocked.
@@ -286,15 +294,89 @@
         </div>
       </section>
 
+      <!-- MAKE YOUR OWN · NEW -->
+      <section class="bg-green" id="make" style="padding: 96px 0;">
+        <div style="max-width: 1280px; margin: 0 auto; padding: 0 32px;">
+          <div class="packs-hero">
+            <div class="copy">
+              <div class="packs-tags">
+                <span class="pill red"><b style="font-weight: 600;">NEW</b></span>
+                <span class="pill">A web companion for 63</span>
+              </div>
+              <h2 class="section-title">Build your own packs<br />on <span style="color: var(--yellow);">packs.63.pt</span></h2>
+              <p class="section-lead" style="color: rgba(255, 255, 255, 0.9);">
+                Inside jokes, your friend group, a stag night deck. Write cards in the browser, co-write with friends, and share with a 4-letter code.
+              </p>
+              <div class="packs-url">
+                <a href="https://packs.63.pt" class="url-bubble">
+                  packs.63.pt <span class="arrow">→</span>
+                </a>
+                <span style="opacity: 0.8; font-size: 15px;">no install required</span>
+              </div>
+            </div>
+            <div class="packs-phones">
+              <div class="phone back">
+                <div class="island" aria-hidden="true"></div>
+                <div class="screen">
+                  <img src="assets/shot-web-publish.png" alt="Publishing a pack and getting a 4-letter share code" />
+                </div>
+              </div>
+              <div class="phone front">
+                <div class="island" aria-hidden="true"></div>
+                <div class="screen">
+                  <img src="assets/shot-web-cards.png" alt="Editing a pack on packs.63.pt" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="packs-features">
+            <div class="pf">
+              <div class="icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"/><path d="M13.5 6.5l4 4"/></svg>
+              </div>
+              <h4>Create</h4>
+              <p>Write your own cards in the browser. Set difficulty, add descriptions, pick an icon and a language for the pack.</p>
+            </div>
+            <div class="pf">
+              <div class="icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"/><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M17 10h2a2 2 0 0 1 2 2v1"/><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M3 13v-1a2 2 0 0 1 2 -2h2"/></svg>
+              </div>
+              <h4>Collaborate</h4>
+              <p>Invite friends to edit alongside you. Real-time co-writing, perfect for inside jokes or a stag night deck.</p>
+            </div>
+            <div class="pf">
+              <div class="icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M15 6a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M15 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M8.7 10.7l6.6 -3.4"/><path d="M8.7 13.3l6.6 3.4"/></svg>
+              </div>
+              <h4>Share</h4>
+              <p>Publish to the community, send a 4-letter code, or open directly in the app. Likes and play counts roll back to you.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- SCREENSHOT STRIP -->
       <section class="section bg-paper tight">
         <span class="eyebrow">See it in action</span>
         <h2 class="section-title">A quick tour.</h2>
         <div class="shots-strip">
-          <div class="phone"><div class="island"></div><div class="screen"><img src="assets/shot-home.png" alt="Home screen" /></div></div>
-          <div class="phone"><div class="island"></div><div class="screen"><img src="assets/shot-packs-list.png" alt="Community packs list" /></div></div>
-          <div class="phone"><div class="island"></div><div class="screen"><img src="assets/shot-pack-detail.png" alt="Pack detail with sample cards" /></div></div>
-          <div class="phone"><div class="island"></div><div class="screen"><img src="assets/shot-card.png" alt="A card mid-game" /></div></div>
+          <figure>
+            <div class="phone"><div class="island"></div><div class="screen"><img src="assets/shot-home.png" alt="Home screen" /></div></div>
+            <figcaption>Grab your crew</figcaption>
+          </figure>
+          <figure>
+            <div class="phone"><div class="island"></div><div class="screen"><img src="assets/shot-packs-list.png" alt="Community packs list" /></div></div>
+            <figcaption>Pick a pack</figcaption>
+          </figure>
+          <figure>
+            <div class="phone"><div class="island"></div><div class="screen"><img src="assets/shot-pack-detail.png" alt="Pack detail with sample cards" /></div></div>
+            <figcaption>Peek at the cards</figcaption>
+          </figure>
+          <figure>
+            <div class="phone"><div class="island"></div><div class="screen"><img src="assets/shot-card.png" alt="A card mid-game" /></div></div>
+            <figcaption>63 seconds. Go.</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -309,7 +391,7 @@
         </div>
         <p style="font-size: 22px; opacity: 0.8; margin: 0 0 6px;">Grab your crew.</p>
         <h2>Download now.</h2>
-        <p>Free on iOS and Android. No accounts. No paywalls. Everything unlocked, every pack. Just 63 seconds and your friends.</p>
+        <p>Free on iOS and Android. No accounts, no paywalls. Everything unlocked, every pack.</p>
         <div class="stores">
           <a class="store-btn play" href="https://play.google.com/store/apps/details?id=pt.app63" aria-label="Get it on Google Play">
             <img src="assets/google_play_badge.png" alt="Get it on Google Play" />
@@ -325,7 +407,7 @@
         <div class="footer-inner">
           <div>
             <div class="logo63" style="font-size: 56px; line-height: 0.9;">63</div>
-            <p style="font-size: 16px; max-width: 360px; opacity: 0.8; margin: 16px 0 0;">The classic party game. Made in Porto, <span style="font-style: normal;">🇵🇹</span></p>
+            <p style="font-size: 16px; max-width: 360px; opacity: 0.8; margin: 16px 0 0;">Your new favourite party game. Made in Porto, <span style="font-style: normal;">🇵🇹</span></p>
           </div>
           <div>
             <h4>The Game</h4>
@@ -353,7 +435,54 @@
 
     </div>
 
+    <!-- STICKY MOBILE CTA -->
+    <div class="sticky-cta" id="sticky-cta" role="complementary" aria-label="Get the app">
+      <span class="txt"><b>63</b> · free on iOS &amp; Android</span>
+      <a href="#get" class="btn primary js-store-cta">Get the app</a>
+    </div>
+
     <script>
+      // On mobile, point "Play now" / sticky CTA straight at the right store
+      // instead of scrolling to the badges.
+      (function () {
+        var ua = navigator.userAgent;
+        var store = /android/i.test(ua)
+          ? 'https://play.google.com/store/apps/details?id=pt.app63'
+          : /iphone|ipad|ipod/i.test(ua)
+            ? 'https://apps.apple.com/us/app/63/id6449913779'
+            : null;
+        if (!store) return;
+        document.querySelectorAll('.js-store-cta').forEach(function (a) {
+          a.href = store;
+        });
+      })();
+
+      // Sticky mobile CTA: show once the hero scrolls out of view,
+      // hide again while the final CTA (with the store badges) is on screen.
+      (function () {
+        var bar = document.getElementById('sticky-cta');
+        var hero = document.getElementById('top');
+        var final = document.getElementById('get');
+        if (!bar || !hero || !final || !('IntersectionObserver' in window)) return;
+
+        var heroVisible = true;
+        var finalVisible = false;
+
+        function update() {
+          bar.classList.toggle('visible', !heroVisible && !finalVisible);
+        }
+
+        new IntersectionObserver(function (entries) {
+          heroVisible = entries[0].isIntersecting;
+          update();
+        }, { threshold: 0.1 }).observe(hero);
+
+        new IntersectionObserver(function (entries) {
+          finalVisible = entries[0].isIntersecting;
+          update();
+        }, { threshold: 0.1 }).observe(final);
+      })();
+
       // Flutter-style bouncy overscroll for the mobile screenshot carousel.
       // Touch only. On desktop the strip is a static row.
       (function () {
