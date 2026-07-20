@@ -35,19 +35,21 @@
     "exampleFor": "Para “Sozinho em Casa”",
     "rounds": [
       {
-        "title": "Diz (quase) tudo.",
+        "title": "Descreve!",
         "body": "Não podes usar as palavras do título da carta, mas tudo o resto é permitido.",
-        "clue": "\"Filme de Natal sobre um miúdo deixado sozinho em casa… com o Macaulay Culkin!\""
+        "clue": "Filme de Natal sobre um miúdo deixado sozinho em casa!",
+        "clue2": "…com o Macaulay Culkin!"
       },
       {
-        "title": "Só uma palavra.",
+        "title": "Uma Palavra!",
         "body": "Sem gestos, sem sons, sem palavras do título. Tens exatamente uma palavra para acertar.",
-        "clue": "\"Kevin!\""
+        "clue": "Kevin!"
       },
       {
-        "title": "Sem palavras nenhumas.",
+        "title": "Mímica!",
         "body": "Só gestos e sons. A esta altura já sabes cada carta — boa sorte a fazer mímica.",
-        "clue": "😱"
+        "clue": "😱",
+        "clueImg": "face-screaming-in-fear"
       }
     ]
   },

@@ -89,22 +89,39 @@ function packFeatures(t) {
     .join('');
 }
 
+// A speech bubble: the provided SVG (assets/speech_bubble.svg) is the box's
+// background, kept to its own ratio, with the clue centred inside. `.bubble-2`
+// is round 1's mirrored reply. Sizing lives in base.css.
+function bubble(inner, cls) {
+  return `<div class="bubble${cls ? ` ${cls}` : ''}"><span class="clue">${inner}</span></div>`;
+}
+
+// A round's clue is either text or a Fluent emoji (same 3D artwork as the
+// pack tiles), depending on which the locale provides.
+function clue(r) {
+  return r.clueImg
+    ? `<img class="clue-emoji" src="/assets/emoji/${r.clueImg}.svg" alt="${r.clue || ''}" />`
+    : r.clue;
+}
+
 function roundCards(t) {
   return t.how.rounds
-    .map(
-      (r, i) => `
+    .map((r, i) => {
+      const bubbles = r.clue2
+        ? bubble(clue(r)) + bubble(r.clue2, 'bubble-2')
+        : bubble(clue(r));
+      return `
           <article class="round r${i + 1}">
             <div class="r-num"><span class="r-word">${t.how.roundWord}</span><span class="r-digit">${i + 1}</span></div>
             <div class="r-copy">
               <h3>${r.title}</h3>
-              <p>${r.body}</p>
+              <p class="r-sub">${r.body}</p>
             </div>
-            <div class="example">
-              <div class="label">${t.how.exampleFor}</div>
-              <div class="clue">${r.clue}</div>
+            <div class="r-example">
+              <div class="bubbles">${bubbles}</div>
             </div>
-          </article>`
-    )
+          </article>`;
+    })
     .join('');
 }
 

@@ -35,19 +35,21 @@
     "exampleFor": "For “Home Alone”",
     "rounds": [
       {
-        "title": "Say (almost) anything.",
+        "title": "Describe!",
         "body": "You can't use the words from the card's title, but everything else is fair game.",
-        "clue": "\"Christmas movie about being left solo in a house… with Macaulay Culkin!\""
+        "clue": "Christmas movie about being left solo in a house!",
+        "clue2": "…with Macaulay Culkin!"
       },
       {
-        "title": "Only one word.",
+        "title": "One Word!",
         "body": "No gestures, no sounds, no title words. You get exactly one word to nail it.",
-        "clue": "\"Kevin!\""
+        "clue": "Kevin!"
       },
       {
-        "title": "No words at all.",
-        "body": "Gestures and sounds only. By now you know every card — good luck miming it.",
-        "clue": "😱"
+        "title": "Charades!",
+        "body": "Gestures and sounds only. By now you know every card, good luck miming it.",
+        "clue": "😱",
+        "clueImg": "face-screaming-in-fear"
       }
     ]
   },

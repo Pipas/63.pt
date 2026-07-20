@@ -47,69 +47,7 @@
   opacity: 1;
 }
 
-/* Round cards: a small "Round" kicker centered over the big digit. */
-.round .r-num {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-self: flex-start;
-  font-size: 108px;
-  line-height: 0.9;
-}
-.round .r-word {
-  font-size: 16px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 500;
-  opacity: 0.8;
-}
-.round .r-digit {
-  letter-spacing: normal;
-  margin-top: -6px;
-}
-
-/* Round-card example clues: quiet footnote pinned to the card
-   bottom — a hairline divider instead of the boxed panel. */
-/* Heading + description share a fixed-height block so the divider
-   below always starts at the same line, no matter how the text
-   wraps. This is what keeps the three cards aligned. */
-.round .r-copy {
-  min-height: 132px;
-}
-.round .example {
-  background: none;
-  border-radius: 0;
-  /* Fixed gap above the divider — anchored from the top, so it
-     never changes when the description wraps. */
-  margin-top: 20px;
-  padding: 14px 0 0;
-  border-top: 1px dashed rgba(0, 0, 0, 0.25);
-  font-size: 14px;
-  color: inherit;
-}
-.round.r3 .example {
-  background: none;
-  color: inherit;
-  border-top-color: rgba(255, 255, 255, 0.4);
-}
-.round .example .label {
-  opacity: 0.65;
-  text-transform: none;
-  letter-spacing: 0;
-  font-size: 13px;
-}
-.round .example .clue {
-  font-weight: 400;
-  opacity: 0.85;
-  letter-spacing: -0.005em;
-}
-.round.r3 .example .clue {
-  font-size: 22px;
-  opacity: 1;
-}
-.round h3 {
-  margin: 8px 0;
-}
+/* Round cards get their speech-bubble layout entirely from base.css now. */
 
 /* Final CTA confetti: rotated paper bits with a gentle drift,
    instead of static dots. */

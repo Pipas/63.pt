@@ -504,85 +504,150 @@ h2.section-title {
   margin-top: 32px;
 }
 .round {
+  --inset: 30px;
   border-radius: var(--r-lg);
-  padding: 32px 28px 36px;
+  padding: 0;
+  aspect-ratio: 1 / 1;
   position: relative;
   overflow: hidden;
-  min-height: 360px;
-  display: flex;
-  flex-direction: column;
-  color: var(--black);
+  color: rgba(0, 0, 0, 0.7);
 }
 .round.r1 {
-  background: var(--blue);
-  color: var(--blue-ink);
+  background: #00a878;
 }
 .round.r2 {
-  background: var(--yellow);
-  color: var(--yellow-ink);
+  background: #ffce41;
 }
 .round.r3 {
-  background: var(--red);
-  color: var(--white);
+  background: #ff6b35;
 }
+
+/* Big round number in the top-right corner, its label centred over the
+   digit. Its top lines up with the title's top (same inset). */
 .round .r-num {
+  position: absolute;
+  top: var(--inset);
+  right: var(--inset);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   font-family: "Fredoka", sans-serif;
   font-weight: 600;
-  font-size: 110px;
-  line-height: 0.85;
+  line-height: 0.82;
   letter-spacing: -0.05em;
-  margin: 0;
-  opacity: 0.95;
 }
-.round .r-label {
-  font-size: 14px;
+.round .r-word {
+  font-size: 16px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 500;
-  opacity: 0.7;
-  margin-top: 4px;
+}
+.round .r-digit {
+  font-size: 104px;
+  margin-top: 2px;
+}
+
+/* Title starts at the same inset as the round number, subtitle beneath. */
+.round .r-copy {
+  position: absolute;
+  top: var(--inset);
+  left: var(--inset);
+  max-width: 60%;
+}
+/* On the darker green/orange cards the copy reads in white; the ROUND
+   label + number stay black. Round 2 (gold) keeps the black copy. */
+.round.r1 .r-copy,
+.round.r3 .r-copy {
+  color: var(--white);
 }
 .round h3 {
   font-family: "Fredoka", sans-serif;
   font-weight: 600;
-  font-size: 30px;
+  font-size: 36px;
   letter-spacing: -0.01em;
-  margin: 18px 0 8px;
+  margin: 0;
   line-height: 1.05;
 }
-.round p {
-  font-size: 16px;
-  line-height: 1.4;
-  margin: 0;
-  opacity: 0.9;
-}
-.round .example {
-  margin-top: auto;
-  padding: 14px 16px;
-  background: rgba(255, 255, 255, 0.55);
-  border-radius: 14px;
+.round .r-sub {
   font-size: 15px;
-  line-height: 1.3;
-  color: var(--black);
+  line-height: 1.4;
+  margin: 12px 0 0;
 }
-.round.r3 .example {
-  background: rgba(255, 255, 255, 0.18);
-  color: var(--white);
+
+/* Wrappers are inert; the bubbles position against the square card. */
+.round .r-example,
+.round .bubbles {
+  display: contents;
 }
-.round .example .label {
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0.7;
-  margin-bottom: 4px;
+
+/* Bubble = a fixed-ratio box with the provided SVG as its background
+   (kept to ratio, never stretched). Absolutely positioned in the lower
+   part of the card; width is a share of the card so every bubble is the
+   same size, and the clue size is a share of the bubble width (cqw), so
+   it scales with it. All bubbles are tilted 12° to the left. */
+.bubble {
+  container-type: inline-size;
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  width: 55%;
+  aspect-ratio: 2012 / 1775;
+  background: url("/assets/speech_bubble.svg") no-repeat center / contain;
+  display: grid;
+  transform: translateX(-50%) rotate(-12deg);
+  transform-origin: center;
 }
-.round .example .clue {
-  font-weight: 500;
-  font-style: italic;
+.bubble .clue {
+  grid-area: 1 / 1;
+  place-self: center;
+  width: 70%;
+  margin-bottom: 16%;
+  text-align: center;
+  color: #16211c;
+  font-family: "Fredoka", sans-serif;
+  font-weight: 600;
+  line-height: 1.12;
+  font-size: var(--fs, 8cqw);
 }
-.round.r3 .example .clue {
-  font-style: normal;
-  font-size: 26px;
+.bubble .clue-emoji {
+  display: block;
+  width: 48cqw;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Clue size per round — the bubble box stays the same size. */
+.round.r1 .bubble:not(.bubble-2) .clue {
+  --fs: 9cqw;
+}
+.round.r2 .bubble .clue {
+  --fs: 18cqw;
+}
+.round.r3 .bubble .clue {
+  margin-bottom: 18%;
+}
+
+/* Round 1: nudge the main bubble left to make room for the reply that
+   overlaps below it. */
+.round.r1 .bubble:not(.bubble-2) {
+  left: 36%;
+  bottom: 5%;
+  z-index: 2;
+}
+
+/* Round 1's reply: smaller, overlapping to the lower-right, tilted the
+   other way (+8deg) with its tail mirrored. */
+.bubble.bubble-2 {
+  left: 70%;
+  bottom: 2%;
+  width: 40%;
+  z-index: 1;
+  transform: translateX(-50%) rotate(8deg) scaleX(-1);
+}
+.bubble.bubble-2 .clue {
+  --fs: 10cqw;
+  transform: scaleX(-1);
 }
 
 /* Fluent emoji inline images */
