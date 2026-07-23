@@ -3,7 +3,7 @@
   "dir": "ltr",
   "langName": "Português",
   "meta": {
-    "title": "63: o teu novo jogo de festa preferido",
+    "title": "63 · Jogo de festa e Mímica",
     "description": "O 63 é um jogo de festa de adivinhar palavras. Duas equipas, turnos de 63 segundos, três rondas. Grátis em iOS e Android, com o packs.63.pt para criares os teus próprios baralhos."
   },
   "nav": {
@@ -27,7 +27,7 @@
     "packs": "packs da comunidade"
   },
   "how": {
-    "eyebrow": "Como se joga",
+    "chip": "Como se joga",
     "titleTop": "As cartas são as mesmas.",
     "titleBottom": "As regras é que apertam.",
     "lead": "As equipas jogam à vez para os colegas adivinharem as cartas, mas a cada ronda as regras mudam.",
@@ -76,7 +76,7 @@
     ]
   },
   "community": {
-    "eyebrow": "Packs da comunidade",
+    "chip": "Packs da comunidade",
     "titleTop": "Packs sem fim,",
     "titleBottom": "feitos pelos jogadores.",
     "lead": "Baralhos feitos pela comunidade, em vários idiomas, com novidades a chegar a toda a hora. Adiciona os que quiseres e mistura-os no mesmo jogo.",

@@ -3,8 +3,8 @@
   "dir": "ltr",
   "langName": "English",
   "meta": {
-    "title": "63: your new favourite party game",
-    "description": "63 is a party word-guessing game. Two teams, 63-second turns, three rounds. Free on iOS and Android, with packs.63.pt for building your own decks."
+    "title": "63 · Party game & Charades",
+    "description": "63 is a party word-guessing game. One phone, two teams, three rounds! Free on iOS and Android, with packs.63.pt for building your own packs."
   },
   "nav": {
     "how": "How to play",
@@ -27,10 +27,10 @@
     "packs": "community packs"
   },
   "how": {
-    "eyebrow": "How to play",
+    "chip": "How to play",
     "titleTop": "The cards stay the same.",
     "titleBottom": "The rules get harder.",
-    "lead": "Teams take turns getting their teammates to guess cards but with each round the rules change.",
+    "lead": "Across three rounds, teams take turns guessing as many cards as they can in 63 seconds. Every round has its own rules.",
     "roundWord": "Round",
     "exampleFor": "For “Home Alone”",
     "rounds": [
@@ -47,7 +47,7 @@
       },
       {
         "title": "Charades!",
-        "body": "Gestures and sounds only. By now you know every card, good luck miming it.",
+        "body": "Gestures and sounds only. By now you know every card, so this'll be a breeze.",
         "clue": "😱",
         "clueImg": "face-screaming-in-fear"
       }
@@ -63,20 +63,20 @@
     "features": [
       {
         "title": "Create",
-        "body": "Write your own cards in the browser. Set difficulty, add descriptions, pick an icon and a language for the pack."
+        "body": "Create as many packs and cards as you want, right in the browser."
       },
       {
         "title": "Collaborate",
-        "body": "Write with as many people as you want — everyone adds cards in real time, and you control who can edit and who can just view."
+        "body": "Write with as many people as you want, everyone adding cards in real time."
       },
       {
         "title": "Share",
-        "body": "Send your pack to a friend with a link, or publish it for everyone — it opens straight in the app, and likes and play counts roll back to you."
+        "body": "Send your pack to a friend with a link, or publish it for the whole community."
       }
     ]
   },
   "community": {
-    "eyebrow": "Community packs",
+    "chip": "Community packs",
     "titleTop": "Endless packs,",
     "titleBottom": "made by players.",
     "lead": "Decks made by the community, in multiple languages, with new ones landing all the time. Add as many as you like and mix them into the same game.",

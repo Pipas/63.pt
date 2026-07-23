@@ -15,10 +15,11 @@
   font-weight: 500;
 }
 
-/* Community section has no screenshot in v3 — single column. */
+/* Community section has no screenshot in v3 — single column. Text aligns
+   left with every other section (full 1280 width); only the pack grid is
+   centred (see .pack-tiles). */
 .section.community {
   grid-template-columns: 1fr;
-  max-width: 760px;
 }
 
 /* The packs.63.pt section sits on the deeper green so the NEW

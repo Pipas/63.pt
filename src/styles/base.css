@@ -242,6 +242,12 @@ img {
   background: var(--red);
   color: var(--white);
 }
+/* For light sections (bg-white / bg-paper) where the translucent-white
+   default would vanish. */
+.pill.tint {
+  background: rgba(0, 168, 120, 0.12);
+  color: var(--green-dark);
+}
 
 /* ── Decorative text underlines ─────────────────────── */
 .underline-red {
@@ -418,19 +424,6 @@ img {
   background: rgba(255, 255, 255, 0.25);
 }
 
-/* Section heads */
-.eyebrow {
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--green-dark);
-  margin-bottom: 12px;
-}
-.bg-green .eyebrow {
-  color: rgba(255, 255, 255, 0.7);
-}
 
 h2.section-title {
   font-family: "Fredoka", sans-serif;
@@ -776,10 +769,9 @@ h2.section-title {
 /* Pack list — mirrors packs.63.pt PackPreview + row layout */
 .pack-tiles {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px 18px;
-  max-width: 560px;
-  margin-top: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px 24px;
+  margin: 24px 0 0;
 }
 .pack-tile {
   display: flex;

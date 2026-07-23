@@ -7,6 +7,10 @@
 
 const SITE_URL = 'https://63.pt';
 
+// og:locale expects an underscore locale (language_TERRITORY), not the bare
+// hreflang code we use elsewhere. Map each supported language to its region.
+const OG_LOCALES = { pt: 'pt_PT', en: 'en_GB' };
+
 // App-store deep links (same for every language).
 const PLAY_URL = 'https://play.google.com/store/apps/details?id=pt.app63';
 const APPLE_URL = 'https://apps.apple.com/app/63/id6449913779';
@@ -184,10 +188,15 @@ export default function render(t, ctx) {
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="63" />
+    <meta property="og:locale" content="${OG_LOCALES[t.lang] || 'en_GB'}" />
     <meta property="og:url" content="${SITE_URL}${self.url}" />
     <meta property="og:title" content="${t.meta.title}" />
     <meta property="og:description" content="${t.meta.description}" />
     <meta property="og:image" content="${SITE_URL}/assets/meta_preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="627" />
+    <meta property="og:image:alt" content="${t.meta.title}" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -195,6 +204,7 @@ export default function render(t, ctx) {
     <meta property="twitter:title" content="${t.meta.title}" />
     <meta property="twitter:description" content="${t.meta.description}" />
     <meta property="twitter:image" content="${SITE_URL}/assets/meta_preview.png" />
+    <meta property="twitter:image:alt" content="${t.meta.title}" />
 
     <link rel="canonical" href="${SITE_URL}${self.url}" />
 ${alternateLinks(langs)}
@@ -285,7 +295,7 @@ ${storeBadges(t.lang)}
 
       <!-- HOW TO PLAY -->
       <section class="section bg-white" id="how">
-        <span class="eyebrow">${t.how.eyebrow}</span>
+        <div class="packs-tags"><span class="pill tint">${t.how.chip}</span></div>
         <h2 class="section-title">${t.how.titleTop}<br /><span class="underline-yellow">${t.how.titleBottom}</span></h2>
         <p class="section-lead">${t.how.lead}</p>
 
@@ -337,7 +347,7 @@ ${storeBadges(t.lang)}
       <section class="bg-paper" id="packs">
         <div class="section community">
           <div>
-            <span class="eyebrow">${t.community.eyebrow}</span>
+            <div class="packs-tags"><span class="pill tint">${t.community.chip}</span></div>
             <h2 class="section-title">${t.community.titleTop}<br />${t.community.titleBottom}</h2>
             <p class="section-lead">${t.community.lead}</p>
             <p class="free-callout">
