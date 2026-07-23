@@ -28,10 +28,10 @@ const LANGS = [
   { code: 'en', url: '/en/', out: 'en/index.html' },
 ];
 
-// Static trees copied verbatim into dist. Paths are relative to ROOT.
+// Static trees copied verbatim into dist. Paths are relative to SRC.
 const COPY_DIRS = [
-  ['src/styles', 'styles'],
-  ['src/scripts', 'scripts'],
+  ['styles', 'styles'],
+  ['scripts', 'scripts'],
   ['assets', 'assets'],
   ['fonts', 'fonts'],
 ];
@@ -85,9 +85,9 @@ export async function build() {
     console.log(`  ✓ ${lang.code.padEnd(3)} → dist/${lang.out}`);
   }
 
-  // Copy static assets.
+  // Copy static assets (COPY_DIRS are relative to SRC).
   for (const [from, to] of COPY_DIRS) {
-    const src = join(ROOT, from);
+    const src = join(SRC, from);
     if (existsSync(src)) await cp(src, join(DIST, to), { recursive: true });
   }
   for (const file of COPY_FILES) {

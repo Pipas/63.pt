@@ -1,0 +1,106 @@
+/* Legal pages (privacy policy, terms) — a quiet, readable layout that borrows
+   the site's Fredoka type, green palette and rounding without the landing
+   page's noise. Depends on base.css for the fonts and :root tokens.
+   NB: the container class is .legal-doc, not .legal — base.css already uses
+   .legal for the footer fine-print (opacity: 0.6), which must not leak here. */
+
+.legal-page {
+  background: var(--paper);
+  color: #1c1c1c;
+}
+
+/* Slim top bar with the wordmark linking home. */
+.legal-nav {
+  background: var(--green);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.legal-nav-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 14px 24px;
+}
+.legal-nav .logo63 {
+  font-family: "Fredoka One", "Fredoka", sans-serif;
+  font-size: 30px;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: -0.04em;
+}
+
+/* Reading column. */
+.legal-doc {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 24px 40px;
+}
+.legal-doc h1 {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  font-size: clamp(38px, 6vw, 52px);
+  line-height: 1;
+  margin: 0 0 8px;
+  color: #013a29;
+}
+.legal-doc .legal-updated {
+  font-size: 14px;
+  color: var(--grey-dark);
+  margin: 0 0 40px;
+}
+.legal-doc h2 {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+  margin: 40px 0 12px;
+  color: var(--black);
+}
+.legal-doc p {
+  font-size: 17px;
+  line-height: 1.65;
+  margin: 0 0 16px;
+  color: #2a2a2a;
+}
+.legal-doc ul {
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+.legal-doc li {
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+.legal-doc a {
+  color: var(--green-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+.legal-doc a:hover {
+  color: var(--green-deeper);
+}
+
+/* Back-home footer. */
+.legal-foot {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 24px 64px;
+}
+.legal-foot a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--green-dark);
+  text-decoration: none;
+}
+.legal-foot a:hover {
+  color: var(--green-deeper);
+}
+
+@media (max-width: 540px) {
+  .legal-doc {
+    padding: 40px 20px 32px;
+  }
+}

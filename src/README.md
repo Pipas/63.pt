@@ -24,6 +24,9 @@ src/
     store-cta.js       Point CTAs at the right app store on mobile.
     sticky-cta.js      Show/hide the sticky mobile CTA on scroll.
     hero-demo.js       The auto-playing hero card demo.
+  static/              Standalone HTML pages (legal, store redirect).
+  assets/              Images, icons, emoji, webmanifest → copied to dist.
+  fonts/               Web fonts → copied to dist.
 ```
 
 ## Build
@@ -36,11 +39,22 @@ npm run preview    # build + serve dist at http://localhost:8080
 
 Output:
 
-- `dist/index.html` → served at **63.pt/** (English)
-- `dist/pt/index.html` → served at **63.pt/pt/** (Portuguese)
-- `dist/{styles,scripts,assets,fonts}` and the legal pages / `CNAME`
+- `dist/index.html` → served at **63.pt/** (Português, the default)
+- `dist/en/index.html` → served at **63.pt/en/** (English)
+- `dist/{styles,scripts,assets,fonts}` and the legal pages
+- `dist/CNAME` and `dist/app-ads.txt` at the site root (hosting metadata)
 
-`dist/` is fully self-contained — deploy it as-is (e.g. GitHub Pages).
+`dist/` is fully self-contained — deploy it as-is.
+
+## Deploy
+
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which runs
+`node src/build.mjs` and publishes `dist/` to GitHub Pages — no local build or
+committed output needed (`dist/` is gitignored). `app-ads.txt` and `CNAME` ride
+along at the site root.
+
+One-time setup: in the repo's **Settings → Pages**, set **Source** to
+**GitHub Actions**.
 
 ## Adding a language
 
