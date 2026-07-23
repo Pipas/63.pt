@@ -5,7 +5,7 @@
   var store = /android/i.test(ua)
     ? 'https://play.google.com/store/apps/details?id=pt.app63'
     : /iphone|ipad|ipod/i.test(ua)
-      ? 'https://apps.apple.com/us/app/63/id6449913779'
+      ? 'https://apps.apple.com/app/63/id6449913779'
       : null;
   if (!store) return;
   document.querySelectorAll('.js-store-cta').forEach(function (a) {

@@ -26,12 +26,11 @@ const WATCH = [
   join(SRC, 'data'),
   join(SRC, 'styles'),
   join(SRC, 'scripts'),
+  join(SRC, 'static'),
   join(SRC, 'template.js'),
   join(SRC, 'build.mjs'),
   join(ROOT, 'assets'),
   join(ROOT, 'fonts'),
-  join(ROOT, 'privacyPolicy.html'),
-  join(ROOT, 'termsAndConditions.html'),
   join(ROOT, 'app-ads.txt'),
 ];
 

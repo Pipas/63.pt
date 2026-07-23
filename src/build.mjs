@@ -36,8 +36,19 @@ const COPY_DIRS = [
   ['fonts', 'fonts'],
 ];
 
-// Standalone files (legal pages, hosting metadata) copied to the dist root.
-const COPY_FILES = ['privacyPolicy.html', 'termsAndConditions.html', 'app-ads.txt', 'CNAME'];
+// Standalone hosting-metadata files copied verbatim to the dist root.
+const COPY_FILES = ['app-ads.txt', 'CNAME'];
+
+// Static HTML pages authored in src/static, each written to one or more URLs in
+// dist. The store-redirect page is emitted to three short paths (/s, /st,
+// /store) so existing links keep working from a single source file.
+const STATIC_PAGES = [
+  ['privacyPolicy.html', 'privacyPolicy.html'],
+  ['termsAndConditions.html', 'termsAndConditions.html'],
+  ['store.html', 's/index.html'],
+  ['store.html', 'st/index.html'],
+  ['store.html', 'store/index.html'],
+];
 
 const readJson = async (p) => JSON.parse(await readFile(p, 'utf8'));
 
@@ -82,6 +93,13 @@ export async function build() {
   for (const file of COPY_FILES) {
     const src = join(ROOT, file);
     if (existsSync(src)) await cp(src, join(DIST, file));
+  }
+
+  // Render static pages from src/static to their dist URLs.
+  for (const [from, to] of STATIC_PAGES) {
+    const outPath = join(DIST, to);
+    await mkdir(dirname(outPath), { recursive: true });
+    await cp(join(SRC, 'static', from), outPath);
   }
 
   console.log(`\n  Built ${LANGS.length} languages → ${DIST}`);

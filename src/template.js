@@ -9,7 +9,7 @@ const SITE_URL = 'https://63.pt';
 
 // App-store deep links (same for every language).
 const PLAY_URL = 'https://play.google.com/store/apps/details?id=pt.app63';
-const APPLE_URL = 'https://apps.apple.com/us/app/63/id6449913779';
+const APPLE_URL = 'https://apps.apple.com/app/63/id6449913779';
 
 // Localized store-badge artwork lives next to the default in /assets.
 function badgeSrc(base, lang) {
