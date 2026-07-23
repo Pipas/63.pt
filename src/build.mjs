@@ -14,7 +14,6 @@ import { readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
-import render from './template.js';
 
 const SRC = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(SRC, '..');
@@ -42,10 +41,15 @@ const COPY_FILES = ['privacyPolicy.html', 'termsAndConditions.html', 'app-ads.tx
 
 const readJson = async (p) => JSON.parse(await readFile(p, 'utf8'));
 
-async function build() {
+export async function build() {
   // Fresh output.
   await rm(DIST, { recursive: true, force: true });
   await mkdir(DIST, { recursive: true });
+
+  // Import the template fresh each build so the dev server picks up edits to
+  // template.js without a restart (ESM caches static imports; the cache-busting
+  // query defeats that). Adds no cost to a one-shot `npm run build`.
+  const { default: render } = await import(`./template.js?t=${Date.now()}`);
 
   // Render each language.
   for (const lang of LANGS) {
@@ -86,7 +90,11 @@ async function build() {
 // Fallback display names, only used if a locale is missing its langName.
 const LANG_NAMES = { en: 'English', pt: 'Português' };
 
-build().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+// Run the build when invoked directly (`node build.mjs`), but not when this
+// module is imported by the dev server.
+if (import.meta.url === `file://${process.argv[1]}`) {
+  build().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

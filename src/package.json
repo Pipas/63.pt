@@ -6,6 +6,11 @@
   "private": true,
   "scripts": {
     "build": "node build.mjs",
+    "dev": "node dev.mjs",
     "preview": "node build.mjs && cd ../dist && python3 -m http.server 8080"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "chokidar": "^4.0.3"
   }
 }
