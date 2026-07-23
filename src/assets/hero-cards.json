@@ -1,0 +1,12 @@
+[
+  { "title": "Home Alone", "description": "Christmas movie about a kid left behind — Macaulay Culkin!", "points": 2, "color": "#6CD4FF" },
+  { "title": "Beyoncé", "description": "Queen B. Single Ladies, Halo, Destiny's Child.", "points": 3, "color": "#6931D0" },
+  { "title": "Pizza", "description": "Italian, round, slices, pepperoni and cheese.", "points": 1, "color": "#DD3636" },
+  { "title": "Titanic", "description": "The ship, the iceberg, Jack and Rose.", "points": 2, "color": "#222B57" },
+  { "title": "Cristiano Ronaldo", "description": "SIUUU! Football, Portugal, seven.", "points": 3, "color": "#1F5239" },
+  { "title": "Harry Potter", "description": "Boy wizard, Hogwarts, lightning scar.", "points": 2, "color": "#FF7733" },
+  { "title": "Sushi", "description": "Japanese rolls of rice and raw fish.", "points": 1, "color": "#3FB57F" },
+  { "title": "Taylor Swift", "description": "Eras tour, Swifties, breakup anthems.", "points": 3, "color": "#D69960" },
+  { "title": "Batman", "description": "Gotham's caped crusader. Nananana!", "points": 2, "color": "#FEEA00" },
+  { "title": "Baguette", "description": "Long, crusty French loaf of bread.", "points": 1, "color": "#A92020" }
+]

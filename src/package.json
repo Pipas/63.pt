@@ -1,0 +1,16 @@
+{
+  "name": "63-landing",
+  "version": "1.0.0",
+  "description": "Static, i18n landing page for 63.pt — one HTML file generated per language.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node dev.mjs",
+    "preview": "node build.mjs && cd ../dist && python3 -m http.server 8080"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "chokidar": "^4.0.3"
+  }
+}

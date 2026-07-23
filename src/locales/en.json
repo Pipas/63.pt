@@ -1,0 +1,116 @@
+{
+  "lang": "en",
+  "dir": "ltr",
+  "langName": "English",
+  "meta": {
+    "title": "63 · Party game & Charades",
+    "description": "63 is a party word-guessing game. One phone, two teams, three rounds! Free on iOS and Android, with packs.63.pt for building your own packs."
+  },
+  "nav": {
+    "how": "How to play",
+    "packs": "Packs",
+    "get": "Get the app",
+    "cta": "Play now"
+  },
+  "hero": {
+    "pills": ["Free · no paywalls", "Party · 4+ players", "iOS &amp; Android"],
+    "taglineTop": "Your new favourite",
+    "taglineBottom": "party game.",
+    "sub": "One phone, two teams, three rounds. Get your team to guess as many cards as you can, 63 seconds at a time.",
+    "skipLabel": "Skip"
+  },
+  "facts": {
+    "phone": "phone",
+    "teams": "teams",
+    "rounds": "rounds",
+    "seconds": "seconds per turn",
+    "packs": "community packs"
+  },
+  "how": {
+    "chip": "How to play",
+    "titleTop": "The cards stay the same.",
+    "titleBottom": "The rules get harder.",
+    "lead": "Across three rounds, teams take turns guessing as many cards as they can in 63 seconds. Every round has its own rules.",
+    "roundWord": "Round",
+    "exampleFor": "For “Home Alone”",
+    "rounds": [
+      {
+        "title": "Describe!",
+        "body": "You can't use the words from the card's title, but everything else is fair game.",
+        "clue": "Christmas movie about being left solo in a house!",
+        "clue2": "…with Macaulay Culkin!"
+      },
+      {
+        "title": "One Word!",
+        "body": "No gestures, no sounds, no title words. You get exactly one word to nail it.",
+        "clue": "Kevin!"
+      },
+      {
+        "title": "Charades!",
+        "body": "Gestures and sounds only. By now you know every card, so this'll be a breeze.",
+        "clue": "😱",
+        "clueImg": "face-screaming-in-fear"
+      }
+    ]
+  },
+  "make": {
+    "new": "NEW",
+    "companion": "A web companion for 63",
+    "titleTop": "Build your own packs",
+    "titleBottom": "on",
+    "lead": "Inside jokes, your favourite memes, a stag night pack. Write cards in the browser, co-write with friends, and share with a link.",
+    "noInstall": "no install required",
+    "features": [
+      {
+        "title": "Create",
+        "body": "Create as many packs and cards as you want, right in the browser."
+      },
+      {
+        "title": "Collaborate",
+        "body": "Write with as many people as you want, everyone adding cards in real time."
+      },
+      {
+        "title": "Share",
+        "body": "Send your pack to a friend with a link, or publish it for the whole community."
+      }
+    ]
+  },
+  "community": {
+    "chip": "Community packs",
+    "titleTop": "Endless packs,",
+    "titleBottom": "made by players.",
+    "lead": "Packs made by the community, in multiple languages, with new ones landing all the time. Add as many as you like and mix them into the same game.",
+    "free": "Every pack is free. No paywalls.",
+    "cardsWord": "cards",
+    "tiles": [
+      { "name": "Top 100 Movies", "cards": 100 },
+      { "name": "World Countries", "cards": 100 },
+      { "name": "Superheroes", "cards": 30 },
+      { "name": "Animals", "cards": 70 },
+      { "name": "Olympic Sports", "cards": 50 },
+      { "name": "Animated Characters", "cards": 60 }
+    ]
+  },
+  "final": {
+    "kicker": "Your next game night, sorted.",
+    "title": "Download now.",
+    "sub": "Free on iOS and Android. No accounts, no paywalls."
+  },
+  "footer": {
+    "blurb": "Your new favourite party game.<br />Made in Porto <span style=\"font-style: normal;\">🇵🇹</span>",
+    "gameHeading": "The Game",
+    "gameLinks": {
+      "how": "How to play",
+      "community": "Community packs"
+    },
+    "packsHeading": "Make Packs",
+    "packsBlurb": "Write your own packs in the browser and share them with your friends.",
+    "privacy": "Privacy policy",
+    "terms": "Terms &amp; conditions",
+    "legal": "Google Play and the Google Play logo are trademarks of Google LLC. App Store and the Apple logo are trademarks of Apple Inc."
+  },
+  "sticky": {
+    "text": "<b>63</b> · free on iOS &amp; Android",
+    "cta": "Get the app"
+  }
+}

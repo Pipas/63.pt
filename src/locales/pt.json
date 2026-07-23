@@ -1,0 +1,116 @@
+{
+  "lang": "pt",
+  "dir": "ltr",
+  "langName": "Português",
+  "meta": {
+    "title": "63 · Jogo de festa e Mímica",
+    "description": "O 63 é um jogo de festa de adivinhar palavras. Um telemóvel, duas equipas, três rondas! Grátis em iOS e Android, com o packs.63.pt para criares os teus próprios packs."
+  },
+  "nav": {
+    "how": "Como jogar",
+    "packs": "Packs",
+    "get": "Instalar a app",
+    "cta": "Jogar agora"
+  },
+  "hero": {
+    "pills": ["Grátis · sem pagamentos", "Festa · 4+ jogadores", "iOS &amp; Android"],
+    "taglineTop": "O teu novo jogo",
+    "taglineBottom": "favorito.",
+    "sub": "Um telemóvel, duas equipas, três rondas. Faz a tua equipa adivinhar o máximo de cartas que conseguires, 63 segundos de cada vez.",
+    "skipLabel": "Passar"
+  },
+  "facts": {
+    "phone": "telemóvel",
+    "teams": "equipas",
+    "rounds": "rondas",
+    "seconds": "segundos por turno",
+    "packs": "packs da comunidade"
+  },
+  "how": {
+    "chip": "Como jogar",
+    "titleTop": "As cartas são iguais.",
+    "titleBottom": "As regras ficam mais difíceis.",
+    "lead": "Ao longo de três rondas, as equipas jogam à vez para adivinhar o maior número de cartas em 63 segundos. Cada ronda tem as suas próprias regras.",
+    "roundWord": "Ronda",
+    "exampleFor": "Para “Sozinho em Casa”",
+    "rounds": [
+      {
+        "title": "Descreve!",
+        "body": "Não podes usar as palavras do título da carta, mas tudo o resto é permitido.",
+        "clue": "Filme de natal sobre ficar solitário num domicílio",
+        "clue2": "…com o Macaulay Culkin!"
+      },
+      {
+        "title": "Uma Palavra!",
+        "body": "Sem gestos, sem sons, sem palavras do título. Tens exatamente uma palavra para acertar.",
+        "clue": "Kevin!"
+      },
+      {
+        "title": "Mímica!",
+        "body": "Só gestos e sons. A esta altura já conheces todas as cartas, por isso vai ser canja.",
+        "clue": "😱",
+        "clueImg": "face-screaming-in-fear"
+      }
+    ]
+  },
+  "make": {
+    "new": "NOVO",
+    "companion": "Complemento web do 63",
+    "titleTop": "Cria os teus próprios",
+    "titleBottom": "packs em",
+    "lead": "Piadas privadas, os teus melhores memes ou um pack para a despedida de solteiro. Escreve cartas no browser, colabora com amigos e partilha com um link.",
+    "noInstall": "sem instalação",
+    "features": [
+      {
+        "title": "Cria",
+        "body": "Cria os packs e cartas que quiseres, diretamente no browser."
+      },
+      {
+        "title": "Colabora",
+        "body": "Convida as pessoas que quiseres, todos adicionam cartas em tempo real."
+      },
+      {
+        "title": "Partilha",
+        "body": "Envia o teu pack a um amigo com um link, ou publica-o para toda a comunidade."
+      }
+    ]
+  },
+  "community": {
+    "chip": "Packs da comunidade",
+    "titleTop": "Packs sem fim,",
+    "titleBottom": "feitos pelos jogadores.",
+    "lead": "Packs feitos pela comunidade, em vários idiomas, com novos a aparecer a toda a hora. Adiciona os que quiseres e mistura-os no mesmo jogo.",
+    "free": "Todos os packs são grátis. Sem pagamentos.",
+    "cardsWord": "cartas",
+    "tiles": [
+      { "name": "Top 100 Filmes", "cards": 100 },
+      { "name": "Países do Mundo", "cards": 100 },
+      { "name": "Super-heróis", "cards": 30 },
+      { "name": "Animais", "cards": 70 },
+      { "name": "Desportos Olímpicos", "cards": 50 },
+      { "name": "Personagens de Animação", "cards": 60 }
+    ]
+  },
+  "final": {
+    "kicker": "A tua próxima noite de jogos!",
+    "title": "Instala já.",
+    "sub": "Grátis em iOS e Android. Sem contas, sem pagamentos."
+  },
+  "footer": {
+    "blurb": "O teu novo jogo de festa preferido.<br />Feito no Porto <span style=\"font-style: normal;\">🇵🇹</span>",
+    "gameHeading": "O Jogo",
+    "gameLinks": {
+      "how": "Como jogar",
+      "community": "Packs da comunidade"
+    },
+    "packsHeading": "Criar Packs",
+    "packsBlurb": "Escreve os teus próprios packs no browser e partilha-os com os teus amigos.",
+    "privacy": "Política de privacidade",
+    "terms": "Termos e condições",
+    "legal": "Google Play e o logótipo Google Play são marcas comerciais da Google LLC. App Store e o logótipo Apple são marcas comerciais da Apple Inc."
+  },
+  "sticky": {
+    "text": "<b>63</b> · grátis em iOS &amp; Android",
+    "cta": "Instalar a app"
+  }
+}
