@@ -263,10 +263,14 @@
   color: var(--white);
   clip-path: circle(var(--sr) at 0% 100%);
   font-weight: 800;
-  /* App SkipReveal: fontSize = cardWidth * 0.3, uppercase "SKIP". */
-  font-size: calc(var(--card-w, 200px) * 0.3);
+  /* App SkipReveal: fontSize = cardWidth * 0.3, uppercase "SKIP". The seal
+     word (localised — "SKIP", "PASSAR", …) is fitted by JS so it never gets
+     wider than the card minus a side padding; --seal-font carries the fitted
+     size, falling back to the app's 0.3 ratio. letter-spacing is in em so it
+     tracks whatever size the fit lands on. */
+  font-size: var(--seal-font, calc(var(--card-w, 200px) * 0.3));
   line-height: 1;
-  letter-spacing: calc(var(--card-w, 200px) * 0.01);
+  letter-spacing: 0.033em;
   text-transform: uppercase;
 }
 

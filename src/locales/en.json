@@ -13,7 +13,7 @@
     "cta": "Play now"
   },
   "hero": {
-    "pills": ["Free · no paywalls", "Party · 3+ players", "iOS &amp; Android"],
+    "pills": ["Free · no paywalls", "Party · 4+ players", "iOS &amp; Android"],
     "taglineTop": "Your new favourite",
     "taglineBottom": "party game.",
     "sub": "One phone, two teams, three rounds. Get your team to guess as many cards as you can, 63 seconds at a time.",
@@ -58,7 +58,7 @@
     "companion": "A web companion for 63",
     "titleTop": "Build your own packs",
     "titleBottom": "on",
-    "lead": "Inside jokes, your friend group, a stag night deck. Write cards in the browser, co-write with friends, and share with a link.",
+    "lead": "Inside jokes, your favourite memes, a stag night pack. Write cards in the browser, co-write with friends, and share with a link.",
     "noInstall": "no install required",
     "features": [
       {
@@ -79,7 +79,7 @@
     "chip": "Community packs",
     "titleTop": "Endless packs,",
     "titleBottom": "made by players.",
-    "lead": "Decks made by the community, in multiple languages, with new ones landing all the time. Add as many as you like and mix them into the same game.",
+    "lead": "Packs made by the community, in multiple languages, with new ones landing all the time. Add as many as you like and mix them into the same game.",
     "free": "Every pack is free. No paywalls.",
     "cardsWord": "cards",
     "tiles": [
@@ -104,7 +104,7 @@
       "community": "Community packs"
     },
     "packsHeading": "Make Packs",
-    "packsBlurb": "Write your own decks in the browser and share them with your friends.",
+    "packsBlurb": "Write your own packs in the browser and share them with your friends.",
     "privacy": "Privacy policy",
     "terms": "Terms &amp; conditions",
     "legal": "Google Play and the Google Play logo are trademarks of Google LLC. App Store and the Apple logo are trademarks of Apple Inc."

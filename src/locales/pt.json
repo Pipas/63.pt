@@ -4,19 +4,19 @@
   "langName": "Português",
   "meta": {
     "title": "63 · Jogo de festa e Mímica",
-    "description": "O 63 é um jogo de festa de adivinhar palavras. Duas equipas, turnos de 63 segundos, três rondas. Grátis em iOS e Android, com o packs.63.pt para criares os teus próprios baralhos."
+    "description": "O 63 é um jogo de festa de adivinhar palavras. Um telemóvel, duas equipas, três rondas! Grátis em iOS e Android, com o packs.63.pt para criares os teus próprios packs."
   },
   "nav": {
-    "how": "Como se joga",
+    "how": "Como jogar",
     "packs": "Packs",
     "get": "Instalar a app",
     "cta": "Jogar agora"
   },
   "hero": {
-    "pills": ["Grátis · sem pagamentos", "Festa · 3+ jogadores", "iOS &amp; Android"],
+    "pills": ["Grátis · sem pagamentos", "Festa · 4+ jogadores", "iOS &amp; Android"],
     "taglineTop": "O teu novo jogo",
-    "taglineBottom": "de festa preferido.",
-    "sub": "Um telemóvel, duas equipas. Faz a tua equipa adivinhar o máximo de cartas que conseguires — 63 segundos de cada vez.",
+    "taglineBottom": "favorito.",
+    "sub": "Um telemóvel, duas equipas, três rondas. Faz a tua equipa adivinhar o máximo de cartas que conseguires, 63 segundos de cada vez.",
     "skipLabel": "Passar"
   },
   "facts": {
@@ -27,17 +27,17 @@
     "packs": "packs da comunidade"
   },
   "how": {
-    "chip": "Como se joga",
-    "titleTop": "As cartas são as mesmas.",
-    "titleBottom": "As regras é que apertam.",
-    "lead": "As equipas jogam à vez para os colegas adivinharem as cartas, mas a cada ronda as regras mudam.",
+    "chip": "Como jogar",
+    "titleTop": "As cartas são iguais.",
+    "titleBottom": "As regras ficam mais difíceis.",
+    "lead": "Ao longo de três rondas, as equipas jogam à vez para adivinhar o maior número de cartas em 63 segundos. Cada ronda tem as suas próprias regras.",
     "roundWord": "Ronda",
     "exampleFor": "Para “Sozinho em Casa”",
     "rounds": [
       {
         "title": "Descreve!",
         "body": "Não podes usar as palavras do título da carta, mas tudo o resto é permitido.",
-        "clue": "Filme de Natal sobre um miúdo deixado sozinho em casa!",
+        "clue": "Filme de natal sobre ficar solitário num domicílio",
         "clue2": "…com o Macaulay Culkin!"
       },
       {
@@ -47,7 +47,7 @@
       },
       {
         "title": "Mímica!",
-        "body": "Só gestos e sons. A esta altura já sabes cada carta — boa sorte a fazer mímica.",
+        "body": "Só gestos e sons. A esta altura já conheces todas as cartas, por isso vai ser canja.",
         "clue": "😱",
         "clueImg": "face-screaming-in-fear"
       }
@@ -55,23 +55,23 @@
   },
   "make": {
     "new": "NOVO",
-    "companion": "Um companheiro web para o 63",
-    "titleTop": "Cria os teus próprios packs",
-    "titleBottom": "em",
-    "lead": "Piadas privadas, o teu grupo de amigos, um baralho para a despedida de solteiro. Escreve cartas no browser, cria-as com amigos e partilha com um link.",
+    "companion": "Complemento web do 63",
+    "titleTop": "Cria os teus próprios",
+    "titleBottom": "packs em",
+    "lead": "Piadas privadas, os teus melhores memes ou um pack para a despedida de solteiro. Escreve cartas no browser, colabora com amigos e partilha com um link.",
     "noInstall": "sem instalação",
     "features": [
       {
         "title": "Cria",
-        "body": "Escreve as tuas próprias cartas no browser. Define a dificuldade, adiciona descrições, escolhe um ícone e um idioma para o pack."
+        "body": "Cria os packs e cartas que quiseres, diretamente no browser."
       },
       {
         "title": "Colabora",
-        "body": "Escreve com quantas pessoas quiseres — todos adicionam cartas em tempo real, e controlas quem pode editar e quem só pode ver."
+        "body": "Convida as pessoas que quiseres, todos adicionam cartas em tempo real."
       },
       {
         "title": "Partilha",
-        "body": "Envia o teu pack a um amigo com um link, ou publica-o para todos — abre logo na app, e os gostos e o número de jogadas voltam para ti."
+        "body": "Envia o teu pack a um amigo com um link, ou publica-o para toda a comunidade."
       }
     ]
   },
@@ -79,7 +79,7 @@
     "chip": "Packs da comunidade",
     "titleTop": "Packs sem fim,",
     "titleBottom": "feitos pelos jogadores.",
-    "lead": "Baralhos feitos pela comunidade, em vários idiomas, com novidades a chegar a toda a hora. Adiciona os que quiseres e mistura-os no mesmo jogo.",
+    "lead": "Packs feitos pela comunidade, em vários idiomas, com novos a aparecer a toda a hora. Adiciona os que quiseres e mistura-os no mesmo jogo.",
     "free": "Todos os packs são grátis. Sem pagamentos.",
     "cardsWord": "cartas",
     "tiles": [
@@ -92,7 +92,7 @@
     ]
   },
   "final": {
-    "kicker": "A tua próxima noite de jogos, resolvida.",
+    "kicker": "A tua próxima noite de jogos!",
     "title": "Instala já.",
     "sub": "Grátis em iOS e Android. Sem contas, sem pagamentos."
   },
@@ -100,11 +100,11 @@
     "blurb": "O teu novo jogo de festa preferido.<br />Feito no Porto <span style=\"font-style: normal;\">🇵🇹</span>",
     "gameHeading": "O Jogo",
     "gameLinks": {
-      "how": "Como se joga",
+      "how": "Como jogar",
       "community": "Packs da comunidade"
     },
     "packsHeading": "Criar Packs",
-    "packsBlurb": "Escreve os teus próprios baralhos no browser e partilha-os com os teus amigos.",
+    "packsBlurb": "Escreve os teus próprios packs no browser e partilha-os com os teus amigos.",
     "privacy": "Política de privacidade",
     "terms": "Termos e condições",
     "legal": "Google Play e o logótipo Google Play são marcas comerciais da Google LLC. App Store e o logótipo Apple são marcas comerciais da Apple Inc."

@@ -18,6 +18,24 @@
   // the markup); falls back to English.
   var SKIP_LABEL = deckEl.getAttribute('data-skip-label') || 'Skip';
 
+  // The seal word is localised and its length swings a lot ("SKIP" vs
+  // "PASSAR"), so a fixed 0.3·cardWidth size overflows for long words. Fit it
+  // to the card width minus a side padding, capped at the app's 0.3 ratio.
+  // Measured with canvas (no reflow) and handed to CSS via --seal-font.
+  var SEAL_PAD = 48; // px of breathing room on each side of the seal word
+  var sealMeasure = document.createElement('canvas').getContext('2d');
+  function fitSealFont(hgame, cardW) {
+    var maxFont = cardW * 0.3; // the app's ratio — the upper bound
+    var avail = cardW - SEAL_PAD * 2;
+    if (avail <= 0) return maxFont;
+    var word = SKIP_LABEL.toUpperCase();
+    sealMeasure.font = '800 100px ' + (getComputedStyle(hgame).fontFamily || 'sans-serif');
+    var perPx = sealMeasure.measureText(word).width / 100;
+    // letter-spacing is 0.033em, i.e. 0.033·font added per gap between glyphs.
+    var gaps = Math.max(0, word.length - 1) * 0.033;
+    return Math.min(maxFont, avail / (perPx + gaps));
+  }
+
   // Deck data: embedded JSON, source of truth is src/data/cards.<lang>.json.
   function loadCards() {
     var node = document.getElementById('hero-cards');
@@ -111,6 +129,7 @@
     hgame.style.setProperty('--stack', Math.max(3, cardH * 0.011) + 'px');
     hgame.style.setProperty('--peek', STACK);
     hgame.style.setProperty('--u', u + 'px');
+    hgame.style.setProperty('--seal-font', fitSealFont(hgame, cardW) + 'px');
   }
 
   // ── Timer: an independent 63→0 countdown, like a real turn. ──

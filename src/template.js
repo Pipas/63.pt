@@ -126,6 +126,7 @@ function roundCards(t) {
             <div class="r-example">
               <div class="bubbles">${bubbles}</div>
             </div>
+            <span class="r-for">${t.how.exampleFor}</span>
           </article>`;
     })
     .join('');
@@ -327,12 +328,12 @@ ${storeBadges(t.lang)}
             <div class="packs-phones">
               <div class="phone back">
                 <div class="screen">
-                  <img src="/assets/packs_publish_tab.png" alt="packs.63.pt" loading="lazy" />
+                  <img src="/assets/packs_publish_tab_${t.lang}.png" alt="packs.63.pt" loading="lazy" />
                 </div>
               </div>
               <div class="phone front">
                 <div class="screen">
-                  <img src="/assets/packs_card_tab.png" alt="packs.63.pt" loading="lazy" />
+                  <img src="/assets/packs_card_tab_${t.lang}.png" alt="packs.63.pt" loading="lazy" />
                 </div>
               </div>
             </div>
