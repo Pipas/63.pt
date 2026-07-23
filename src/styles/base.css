@@ -222,19 +222,6 @@ img {
   object-fit: cover;
   display: block;
 }
-.phone .island {
-  position: absolute;
-  top: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30%;
-  aspect-ratio: 3/1;
-  border-radius: 999px;
-  background: #000;
-  z-index: 2;
-  pointer-events: none;
-}
-
 /* ── Pills / chips ──────────────────────────────────── */
 .pill {
   display: inline-flex;
@@ -699,6 +686,10 @@ h2.section-title {
   position: absolute;
   top: 50%;
   left: 50%;
+  border-radius: 30px;
+}
+.packs-phones .phone .screen {
+  border-radius: 25px;
 }
 .packs-phones .phone.back {
   transform: translate(-90%, -50%) rotate(-6deg);
@@ -970,6 +961,10 @@ h2.section-title {
   }
   .packs-phones .phone {
     width: 190px;
+    border-radius: 26px;
+  }
+  .packs-phones .phone .screen {
+    border-radius: 21px;
   }
   .packs-phones .phone.back {
     transform: translate(-95%, -50%) rotate(-6deg);

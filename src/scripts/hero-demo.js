@@ -162,11 +162,17 @@
     top.classList.remove('no-anim');
   }
 
+  // How long the fresh top card rests, fully settled, before the next button
+  // press acts on it. The rest of a cycle (press → reveal → fly-off → recycle)
+  // takes ~790ms, so time-on-screen between presses ≈ DWELL + 790ms.
+  // DWELL = 7200 → ~8s per card.
+  var DWELL = 7200;
+
   var guessesInARow = 0;
   function nextIsGuess() {
-    // Mostly guesses, with the occasional skip; never two skips running.
+    // Skip ~33% of the time; force a skip after a long guess streak.
     if (guessesInARow >= 4) return false;
-    return Math.random() < 0.72;
+    return Math.random() < 0.67;
   }
 
   function cycle() {
@@ -211,7 +217,7 @@
     // 4) Recycle to the back once it has flown, then queue the next card.
     setTimeout(function () {
       recycle(top);
-      setTimeout(cycle, 520);
+      setTimeout(cycle, DWELL);
     }, 170 + 120 + 500);
   }
 
@@ -228,7 +234,8 @@
 
     window.addEventListener('resize', resize);
     setInterval(tickTimer, 1000);
-    setTimeout(cycle, 900);
+    // Let the very first card sit and be read before the demo starts playing.
+    setTimeout(cycle, 5000);
   }
 
   start(loadCards());

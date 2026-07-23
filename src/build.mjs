@@ -21,10 +21,12 @@ const ROOT = resolve(SRC, '..');
 const DIST = join(ROOT, 'dist');
 
 // Each language: its locale code, the URL it's served at, and the file it's
-// written to. English is the root; every other language gets a subfolder.
+// written to. Portuguese is the default (root); every other language gets a
+// subfolder. The first entry is treated as the default — its page carries the
+// browser-language sniff that bounces non-PT visitors to their language.
 const LANGS = [
-  { code: 'en', url: '/', out: 'index.html' },
-  { code: 'pt', url: '/pt/', out: 'pt/index.html' },
+  { code: 'pt', url: '/', out: 'index.html' },
+  { code: 'en', url: '/en/', out: 'en/index.html' },
 ];
 
 // Static trees copied verbatim into dist. Paths are relative to ROOT.
@@ -61,7 +63,7 @@ async function build() {
       };
     });
 
-    const html = render(t, { langs, cards });
+    const html = render(t, { langs, cards, isDefault: lang.code === LANGS[0].code });
     const outPath = join(DIST, lang.out);
     await mkdir(dirname(outPath), { recursive: true });
     await writeFile(outPath, html, 'utf8');

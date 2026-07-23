@@ -24,24 +24,26 @@ function storeBadges(lang) {
   const apple = badgeSrc('app_store_badge', lang);
   return `
           <div class="stores">
-            <a class="store-btn play" href="${PLAY_URL}" aria-label="Get it on Google Play">
-              <img src="${play}" alt="Get it on Google Play" />
-            </a>
             <a class="store-btn apple" href="${APPLE_URL}" aria-label="Download on the App Store">
               <img src="${apple}" alt="Download on the App Store" />
+            </a>
+            <a class="store-btn play" href="${PLAY_URL}" aria-label="Get it on Google Play">
+              <img src="${play}" alt="Get it on Google Play" />
             </a>
           </div>`;
 }
 
-// The six community pack tiles: fixed preview colours + emoji artwork here,
-// name/meta from the locale so both are translatable.
+// The community pack tiles: preview colours + emoji artwork mirror the real
+// packs published on packs.63.pt (colour and the two pack emojis come straight
+// from each pack's definition). Names/meta live in the locale so they stay
+// translatable, and the order here must match the locale's `community.tiles`.
 const TILE_ART = [
-  { color: '#3fb57f', back: 'joystick', front: 'video-game' },
-  { color: '#d69960', back: 'cheese-wedge', front: 'baguette-bread' },
-  { color: '#222b57', back: 'high-voltage', front: 'man-superhero' },
-  { color: '#2e1a14', back: 'chequered-flag', front: 'automobile' },
-  { color: '#1f5239', back: 'pot-of-food', front: 'fish' },
-  { color: '#a92020', back: 'soccer-ball', front: 'trophy' },
+  { color: '#FFC857', back: 'popcorn', front: 'clapper-board' }, // Top 100 Movies
+  { color: '#1E3A5F', back: 'world-map', front: 'globe-showing-europe-africa' }, // World Countries
+  { color: '#B43E8F', back: 'high-voltage', front: 'person-superhero' }, // Superheroes
+  { color: '#57CC99', back: 'elephant', front: 'grinning-cat-with-smiling-eyes' }, // Animals
+  { color: '#2D9CDB', back: 'person-running', front: 'sports-medal' }, // Olympic Sports
+  { color: '#F76F8E', back: 'artist-palette', front: 'television' }, // Animated Characters
 ];
 
 const HEART_SVG =
@@ -142,6 +144,28 @@ function langSwitch(langs) {
     .join(' · ');
 }
 
+// First-load language sniff, inlined in the <head> of the default (root) page
+// only. The site is static (GitHub Pages), so this runs client-side before
+// paint: a visitor whose browser isn't Portuguese is bounced to /en/ once per
+// session. The sessionStorage guard means we never fight a manual choice — if
+// someone picks a language from the footer switcher, we won't bounce them back.
+function langRedirect(langs, isDefault) {
+  if (!isDefault) return '';
+  const fallback = langs.find((l) => !l.current); // the non-default language
+  if (!fallback) return '';
+  return `
+    <script>
+      (function () {
+        try {
+          if (sessionStorage.getItem('lang-redirect')) return;
+          sessionStorage.setItem('lang-redirect', '1');
+          var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+          if (lang.indexOf('pt') !== 0) location.replace('${fallback.url}');
+        } catch (e) {}
+      })();
+    </script>`;
+}
+
 export default function render(t, ctx) {
   const { langs } = ctx;
   const self = langs.find((l) => l.current);
@@ -151,7 +175,7 @@ export default function render(t, ctx) {
 <html lang="${t.lang}" dir="${t.dir}">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />${langRedirect(langs, ctx.isDefault)}
     <title>${t.meta.title}</title>
 
     <!-- Primary Meta Tags -->
@@ -292,15 +316,13 @@ ${storeBadges(t.lang)}
             </div>
             <div class="packs-phones">
               <div class="phone back">
-                <div class="island" aria-hidden="true"></div>
                 <div class="screen">
-                  <img src="/assets/shot-web-publish.png" alt="packs.63.pt" loading="lazy" />
+                  <img src="/assets/packs_publish_tab.png" alt="packs.63.pt" loading="lazy" />
                 </div>
               </div>
               <div class="phone front">
-                <div class="island" aria-hidden="true"></div>
                 <div class="screen">
-                  <img src="/assets/shot-web-cards.png" alt="packs.63.pt" loading="lazy" />
+                  <img src="/assets/packs_card_tab.png" alt="packs.63.pt" loading="lazy" />
                 </div>
               </div>
             </div>

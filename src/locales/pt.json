@@ -22,7 +22,7 @@
   "facts": {
     "phone": "telemóvel",
     "teams": "equipas",
-    "rounds": "rondas, mesmo baralho",
+    "rounds": "rondas",
     "seconds": "segundos por turno",
     "packs": "packs da comunidade"
   },
@@ -83,16 +83,16 @@
     "free": "Todos os packs são grátis. Sem pagamentos.",
     "cardsWord": "cartas",
     "tiles": [
-      { "name": "Videojogos", "cards": 110, "likes": 23 },
-      { "name": "O Pack do João", "cards": 20, "flag": "🇵🇹" },
-      { "name": "Super-heróis", "cards": 12, "flag": "🇬🇧" },
-      { "name": "Carros Clássicos", "cards": 12 },
-      { "name": "Comida Portuguesa", "cards": 12, "flag": "🇵🇹" },
-      { "name": "Deportes Famosos", "cards": 12, "flag": "🇪🇸" }
+      { "name": "Top 100 Filmes", "cards": 100 },
+      { "name": "Países do Mundo", "cards": 100 },
+      { "name": "Super-heróis", "cards": 30 },
+      { "name": "Animais", "cards": 70 },
+      { "name": "Desportos Olímpicos", "cards": 50 },
+      { "name": "Personagens de Animação", "cards": 60 }
     ]
   },
   "final": {
-    "kicker": "Junta os teus amigos.",
+    "kicker": "A tua próxima noite de jogos, resolvida.",
     "title": "Instala já.",
     "sub": "Grátis em iOS e Android. Sem contas, sem pagamentos."
   },

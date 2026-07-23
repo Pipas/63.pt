@@ -16,13 +16,13 @@
     "pills": ["Free · no paywalls", "Party · 3+ players", "iOS &amp; Android"],
     "taglineTop": "Your new favourite",
     "taglineBottom": "party game.",
-    "sub": "One phone, two teams. Get your team to guess as many cards as you can — 63 seconds at a time.",
+    "sub": "One phone, two teams, three rounds. Get your team to guess as many cards as you can, 63 seconds at a time.",
     "skipLabel": "Skip"
   },
   "facts": {
     "phone": "phone",
     "teams": "teams",
-    "rounds": "rounds, same deck",
+    "rounds": "rounds",
     "seconds": "seconds per turn",
     "packs": "community packs"
   },
@@ -83,16 +83,16 @@
     "free": "Every pack is free. No paywalls.",
     "cardsWord": "cards",
     "tiles": [
-      { "name": "Video Games", "cards": 110, "likes": 23 },
-      { "name": "O Pack do João", "cards": 20, "flag": "🇵🇹" },
-      { "name": "Superheroes", "cards": 12, "flag": "🇬🇧" },
-      { "name": "Classic Cars", "cards": 12 },
-      { "name": "Comida Portuguesa", "cards": 12, "flag": "🇵🇹" },
-      { "name": "Deportes Famosos", "cards": 12, "flag": "🇪🇸" }
+      { "name": "Top 100 Movies", "cards": 100 },
+      { "name": "World Countries", "cards": 100 },
+      { "name": "Superheroes", "cards": 30 },
+      { "name": "Animals", "cards": 70 },
+      { "name": "Olympic Sports", "cards": 50 },
+      { "name": "Animated Characters", "cards": 60 }
     ]
   },
   "final": {
-    "kicker": "Round up your friends.",
+    "kicker": "Your next game night, sorted.",
     "title": "Download now.",
     "sub": "Free on iOS and Android. No accounts, no paywalls."
   },
