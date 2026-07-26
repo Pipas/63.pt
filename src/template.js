@@ -239,6 +239,11 @@ function langRedirect(langs, isDefault) {
           sessionStorage.setItem('lang-redirect', '1');
           var routes = ${JSON.stringify(routes)};
           var def = ${JSON.stringify(self.code)};
+          // Carry the query string across the bounce. Visitors arriving from a
+          // QR short link land here with the UTMs attached, and this script
+          // runs before the analytics tag — drop them and every non-Portuguese
+          // scan is recorded as untagged direct traffic.
+          var qs = location.search + location.hash;
           var prefs = (navigator.languages && navigator.languages.length)
             ? navigator.languages
             : [navigator.language || navigator.userLanguage || ''];
@@ -250,7 +255,7 @@ function langRedirect(langs, isDefault) {
             if (base === def) return;
             for (var j = 0; j < routes.length; j++) {
               if (base === routes[j][0]) {
-                location.replace(routes[j][1]);
+                location.replace(routes[j][1] + qs);
                 return;
               }
             }
@@ -258,7 +263,7 @@ function langRedirect(langs, isDefault) {
           // Nothing matched. Only fall back when the browser actually stated a
           // preference — an empty list means an odd client, not a signal, and
           // those are better left on the canonical root page.
-          if (sawPref) location.replace(${JSON.stringify(fallback ? fallback.url : self.url)});
+          if (sawPref) location.replace(${JSON.stringify(fallback ? fallback.url : self.url)} + qs);
         } catch (e) {}
       })();
     </script>`;
@@ -319,6 +324,24 @@ function structuredData(t, self) {
   return `<script type="application/ld+json">\n${json}\n    </script>`;
 }
 
+// Umami analytics tag. Cookieless and no personal data, so it needs no consent
+// banner — but it is still only emitted when build.mjs has a website ID, so
+// local builds and forks never report into the real dashboard.
+//
+// `defer` keeps it off the critical path: the language sniff above runs first
+// (during head parse) and may redirect, in which case this page never reports
+// and the destination does — one pageview per visit, UTMs intact.
+function analytics(umami) {
+  if (!umami || !umami.websiteId) return '';
+  return `
+    <script
+      defer
+      src="${umami.scriptUrl}"
+      data-website-id="${umami.websiteId}"
+      data-domains="${umami.domains}"
+    ></script>`;
+}
+
 export default function render(t, ctx) {
   const { langs } = ctx;
   const self = langs.find((l) => l.current);
@@ -370,6 +393,7 @@ ${alternateLinks(langs)}
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
     <link rel="manifest" href="/assets/site.webmanifest" />
+${analytics(ctx.umami)}
   </head>
   <body>
     <div class="page">

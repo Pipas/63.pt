@@ -1,0 +1,23 @@
+{
+  "groups": {
+    "t": { "source": "tshirt", "medium": "merch", "ecc": "H" },
+    "k": { "source": "sticker", "medium": "print" },
+    "ig": { "source": "instagram", "medium": "social" },
+    "rd": { "source": "reddit", "medium": "social" },
+    "ph": { "source": "producthunt", "medium": "social" },
+    "td": { "source": "tildes", "medium": "social" },
+    "pr": { "source": "press", "medium": "referral" }
+  },
+
+  "links": [
+    { "code": "k1", "campaign": "dentistas", "note": "Sticker - 9 em cada 10 dentistas" },
+    { "code": "k2", "campaign": "chapeu", "note": "Sticker - Um chapéu com três bicos" },
+    { "code": "k3", "campaign": "mae", "note": "Sticker - Chamar 'Mãe' à professora" },
+    { "code": "k4", "campaign": "subir", "note": "Sticker - Subir para cima" },
+
+    { "code": "ig", "campaign": "bio", "note": "Instagram bio link" },
+    { "code": "rd", "campaign": "posts", "note": "Reddit post and comments" },
+    { "code": "ph", "campaign": "launch", "note": "Product Hunt launch" },
+    { "code": "td", "campaign": "tildes", "note": "Tildes post" }
+  ]
+}
