@@ -133,10 +133,19 @@ function roundCards(t) {
 }
 
 // hreflang alternates + a small footer language switcher.
+//
+// x-default is what Google serves a visitor no other hreflang matches. It must
+// point at the default (root) language — without it Google is free to treat the
+// two pages as competing duplicates instead of translations of each other.
 function alternateLinks(langs) {
-  return langs
-    .map((l) => `    <link rel="alternate" hreflang="${l.code}" href="${SITE_URL}${l.url}" />`)
-    .join('\n');
+  const lines = langs.map(
+    (l) => `    <link rel="alternate" hreflang="${l.code}" href="${SITE_URL}${l.url}" />`
+  );
+  const def = langs.find((l) => l.isDefault);
+  if (def) {
+    lines.push(`    <link rel="alternate" hreflang="x-default" href="${SITE_URL}${def.url}" />`);
+  }
+  return lines.join('\n');
 }
 
 function langSwitch(langs) {
@@ -154,6 +163,15 @@ function langSwitch(langs) {
 // paint: a visitor whose browser isn't Portuguese is bounced to /en/ once per
 // session. The sessionStorage guard means we never fight a manual choice — if
 // someone picks a language from the footer switcher, we won't bounce them back.
+//
+// The crawler guard is not optional. Googlebot executes this script, reports an
+// en-US navigator.language, and starts every crawl with an empty sessionStorage
+// — so without the guard it is bounced from / to /en/ and sees the same content
+// at both URLs. That is what makes Google collapse the two pages as duplicates
+// and pin a stale snippet to the root. Crawlers must be left on the page they
+// asked for and allowed to follow hreflang instead.
+const CRAWLER_RE = 'bot|crawl|spider|slurp|mediapartners|lighthouse|headlesschrome';
+
 function langRedirect(langs, isDefault) {
   if (!isDefault) return '';
   const fallback = langs.find((l) => !l.current); // the non-default language
@@ -162,6 +180,7 @@ function langRedirect(langs, isDefault) {
     <script>
       (function () {
         try {
+          if (/${CRAWLER_RE}/i.test(navigator.userAgent || '')) return;
           if (sessionStorage.getItem('lang-redirect')) return;
           sessionStorage.setItem('lang-redirect', '1');
           var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
@@ -169,6 +188,61 @@ function langRedirect(langs, isDefault) {
         } catch (e) {}
       })();
     </script>`;
+}
+
+// Profiles that are the same entity as this site. Google uses `sameAs` to merge
+// the site and the two store listings into one brand rather than three rivals
+// competing for the "63" query — which is the whole point of shipping this.
+// Add the Instagram and Discord URLs here when they're settled.
+const SAME_AS = [APPLE_URL, PLAY_URL];
+
+// Structured data (JSON-LD), emitted on every language page. Organization and
+// WebSite are language-independent so they keep a stable @id and are declared
+// once against the root; SoftwareApplication carries this page's own language
+// and description so each translation describes itself.
+function structuredData(t, self) {
+  const graph = [
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: '63',
+      url: `${SITE_URL}/`,
+      logo: `${SITE_URL}/assets/63.png`,
+      sameAs: SAME_AS,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: '63',
+      publisher: { '@id': `${SITE_URL}/#organization` },
+    },
+    {
+      '@type': 'SoftwareApplication',
+      // Language-scoped @id: each translation states its own url/inLanguage, so
+      // sharing one node id across pages would have them contradict each other.
+      '@id': `${SITE_URL}${self.url}#app`,
+      name: '63',
+      url: `${SITE_URL}${self.url}`,
+      description: t.meta.description,
+      inLanguage: t.lang,
+      applicationCategory: 'GameApplication',
+      operatingSystem: 'iOS, Android',
+      image: `${SITE_URL}/assets/meta_preview.png`,
+      publisher: { '@id': `${SITE_URL}/#organization` },
+      sameAs: SAME_AS,
+      // The game is free; an explicit zero-price Offer is how schema.org says so.
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+    },
+  ];
+
+  // A literal `</script>` inside JSON would close the block early. No current
+  // string contains one, but escaping `<` keeps that true for future copy.
+  const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }, null, 2).replace(
+    /</g,
+    '\\u003c'
+  );
+  return `<script type="application/ld+json">\n${json}\n    </script>`;
 }
 
 export default function render(t, ctx) {
@@ -209,6 +283,9 @@ export default function render(t, ctx) {
 
     <link rel="canonical" href="${SITE_URL}${self.url}" />
 ${alternateLinks(langs)}
+
+    <!-- Structured data -->
+    ${structuredData(t, self)}
 
     <!-- Fonts are self-hosted via @font-face in styles/base.css -->
 

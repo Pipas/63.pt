@@ -4,7 +4,7 @@
   "langName": "Português",
   "meta": {
     "title": "63 · Jogo de festa e Mímica",
-    "description": "O 63 é um jogo de festa de adivinhar palavras. Um telemóvel, duas equipas, três rondas! Grátis em iOS e Android, com o packs.63.pt para criares os teus próprios packs."
+    "description": "O 63 é um jogo de festa de adivinhar palavras. Um telemóvel, duas equipas, três rondas! Grátis para iOS e Android, com o packs.63.pt para criares os teus próprios packs."
   },
   "nav": {
     "how": "Como jogar",
@@ -94,7 +94,7 @@
   "final": {
     "kicker": "A tua próxima noite de jogos!",
     "title": "Instala já.",
-    "sub": "Grátis em iOS e Android. Sem contas, sem pagamentos."
+    "sub": "Grátis para iOS e Android. Sem contas, sem pagamentos."
   },
   "footer": {
     "blurb": "O teu novo jogo de festa preferido.<br />Feito no Porto <span style=\"font-style: normal;\">🇵🇹</span>",
@@ -110,7 +110,7 @@
     "legal": "Google Play e o logótipo Google Play são marcas comerciais da Google LLC. App Store e o logótipo Apple são marcas comerciais da Apple Inc."
   },
   "sticky": {
-    "text": "<b>63</b> · grátis em iOS &amp; Android",
+    "text": "<b>63</b> · grátis para iOS &amp; Android",
     "cta": "Instalar a app"
   }
 }

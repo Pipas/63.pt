@@ -37,7 +37,11 @@ const COPY_DIRS = [
 ];
 
 // Standalone hosting-metadata files copied verbatim to the dist root.
-const COPY_FILES = ['app-ads.txt', 'CNAME'];
+const COPY_FILES = ['app-ads.txt', 'CNAME', 'robots.txt'];
+
+// Extra URLs listed in the sitemap alongside the language pages. The /s, /st and
+// /store paths are deliberately absent — they're store redirects, not content.
+const SITEMAP_EXTRAS = ['/privacyPolicy.html', '/termsAndConditions.html'];
 
 // Static HTML pages authored in src/static, each written to one or more URLs in
 // dist. The store-redirect page is emitted to three short paths (/s, /st,
@@ -51,6 +55,50 @@ const STATIC_PAGES = [
 ];
 
 const readJson = async (p) => JSON.parse(await readFile(p, 'utf8'));
+
+const SITE_URL = 'https://63.pt';
+
+// The sitemap, generated rather than checked in so the language list and the
+// hreflang alternates can never drift from LANGS.
+//
+// Every language page lists the full alternate set (itself included) plus
+// x-default — that is what tells Google the pages are translations of one
+// another rather than duplicates. `lastmod` is the build date, which for a
+// static site is genuinely when the page last changed.
+function renderSitemap() {
+  const today = new Date().toISOString().slice(0, 10);
+  const alternates = [
+    ...LANGS.map((l) => ({ code: l.code, url: l.url })),
+    { code: 'x-default', url: LANGS[0].url },
+  ]
+    .map(
+      (a) =>
+        `    <xhtml:link rel="alternate" hreflang="${a.code}" href="${SITE_URL}${a.url}"/>`
+    )
+    .join('\n');
+
+  const langUrls = LANGS.map(
+    (l) => `  <url>
+    <loc>${SITE_URL}${l.url}</loc>
+${alternates}
+    <lastmod>${today}</lastmod>
+  </url>`
+  );
+
+  const extraUrls = SITEMAP_EXTRAS.map(
+    (p) => `  <url>
+    <loc>${SITE_URL}${p}</loc>
+    <lastmod>${today}</lastmod>
+  </url>`
+  );
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${[...langUrls, ...extraUrls].join('\n')}
+</urlset>
+`;
+}
 
 export async function build() {
   // Fresh output.
@@ -73,6 +121,8 @@ export async function build() {
         code: l.code,
         url: l.url,
         current: l.code === lang.code,
+        // Which language is the root one — the template needs it for x-default.
+        isDefault: l.code === LANGS[0].code,
         // Name in that language's own tongue, read from its locale.
         name: meta ? meta.langName : LANG_NAMES[l.code],
       };
@@ -101,6 +151,9 @@ export async function build() {
     await mkdir(dirname(outPath), { recursive: true });
     await cp(join(SRC, 'static', from), outPath);
   }
+
+  await writeFile(join(DIST, 'sitemap.xml'), renderSitemap(), 'utf8');
+  console.log('  ✓ sitemap.xml');
 
   console.log(`\n  Built ${LANGS.length} languages → ${DIST}`);
 }
