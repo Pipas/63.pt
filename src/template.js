@@ -158,24 +158,78 @@ function langSwitch(langs) {
     .join(' · ');
 }
 
+// Crawlers that must never be language-redirected.
+//
+// This guard is not optional. A crawler executes the sniff below, reports a
+// non-PT navigator.language, and starts every fetch with an empty
+// sessionStorage — so without the guard it is bounced from / to /en/ and sees
+// the same content at both URLs. That is what makes Google collapse the two
+// pages as duplicates and pin a stale snippet to the root.
+//
+// The non-obvious entries are the ones that cost us a day: Google does NOT use
+// the Googlebot UA for Search Console's URL Inspection — that tool crawls as
+// `Google-InspectionTool/1.0`, and `GoogleOther` / `Google-Extended` likewise
+// contain no "bot" substring. Any generic `bot|crawl|spider` test misses all
+// three. Current list: developers.google.com/search/docs/crawling-indexing/google-common-crawlers
+//
+// Being a blocklist, this needs an occasional look. It is no longer the only
+// thing protecting indexing though — self-referencing canonicals, the full
+// hreflang set with x-default, and sitemap.xml all state the relationship
+// between the language pages independently of what any crawler renders.
+const CRAWLER_RE = [
+  // Generic tokens — catch the long tail, including Googlebot and Bingbot.
+  'bot',
+  'crawler',
+  'crawl',
+  'spider',
+  'slurp',
+  // Google crawlers whose UA contains no "bot".
+  'inspectiontool',
+  'googleother',
+  'google-extended',
+  'google-safety',
+  'apis-google',
+  'mediapartners',
+  'feedfetcher',
+  'googleweblight',
+  // Headless/audit renderers.
+  'lighthouse',
+  'headless',
+  'phantomjs',
+  // Link-preview scrapers: these fetch og: tags, so a redirect here means a
+  // shared PT link previews in English.
+  'facebookexternalhit',
+  'facebot',
+  'embedly',
+  // Archivers.
+  'ia_archiver',
+  'archiver',
+].join('|');
+
 // First-load language sniff, inlined in the <head> of the default (root) page
 // only. The site is static (GitHub Pages), so this runs client-side before
-// paint: a visitor whose browser isn't Portuguese is bounced to /en/ once per
-// session. The sessionStorage guard means we never fight a manual choice — if
-// someone picks a language from the footer switcher, we won't bounce them back.
+// paint: a visitor whose browser prefers a language we publish is sent there
+// once per session. The sessionStorage guard means we never fight a manual
+// choice — if someone picks a language from the footer switcher, we won't
+// bounce them back.
 //
-// The crawler guard is not optional. Googlebot executes this script, reports an
-// en-US navigator.language, and starts every crawl with an empty sessionStorage
-// — so without the guard it is bounced from / to /en/ and sees the same content
-// at both URLs. That is what makes Google collapse the two pages as duplicates
-// and pin a stale snippet to the root. Crawlers must be left on the page they
-// asked for and allowed to follow hreflang instead.
-const CRAWLER_RE = 'bot|crawl|spider|slurp|mediapartners|lighthouse|headlesschrome';
+// Negotiation walks navigator.languages in the visitor's own priority order and
+// takes the first entry matching any language we ship, so adding a locale to
+// LANGS in build.mjs is all it takes to route to it. If the visitor prefers
+// neither the default nor anything we publish — say fr-FR while we ship only
+// pt/en — they land on FALLBACK_LANG rather than a page they can't read.
+//
+// Named explicitly, not "the first non-default language", so that adding a
+// locale to LANGS can never silently move everyone's fallback.
+const FALLBACK_LANG = 'en';
 
 function langRedirect(langs, isDefault) {
   if (!isDefault) return '';
-  const fallback = langs.find((l) => !l.current); // the non-default language
-  if (!fallback) return '';
+  const self = langs.find((l) => l.isDefault);
+  const routes = langs.filter((l) => !l.isDefault).map((l) => [l.code, l.url]);
+  if (!routes.length || !self) return '';
+  const fallback = langs.find((l) => l.code === FALLBACK_LANG && !l.isDefault);
+
   return `
     <script>
       (function () {
@@ -183,8 +237,28 @@ function langRedirect(langs, isDefault) {
           if (/${CRAWLER_RE}/i.test(navigator.userAgent || '')) return;
           if (sessionStorage.getItem('lang-redirect')) return;
           sessionStorage.setItem('lang-redirect', '1');
-          var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-          if (lang.indexOf('pt') !== 0) location.replace('${fallback.url}');
+          var routes = ${JSON.stringify(routes)};
+          var def = ${JSON.stringify(self.code)};
+          var prefs = (navigator.languages && navigator.languages.length)
+            ? navigator.languages
+            : [navigator.language || navigator.userLanguage || ''];
+          var sawPref = false;
+          for (var i = 0; i < prefs.length; i++) {
+            var base = String(prefs[i]).toLowerCase().split('-')[0];
+            if (!base) continue;
+            sawPref = true;
+            if (base === def) return;
+            for (var j = 0; j < routes.length; j++) {
+              if (base === routes[j][0]) {
+                location.replace(routes[j][1]);
+                return;
+              }
+            }
+          }
+          // Nothing matched. Only fall back when the browser actually stated a
+          // preference — an empty list means an odd client, not a signal, and
+          // those are better left on the canonical root page.
+          if (sawPref) location.replace(${JSON.stringify(fallback ? fallback.url : self.url)});
         } catch (e) {}
       })();
     </script>`;
