@@ -6,6 +6,7 @@
     "rd": { "source": "reddit", "medium": "social" },
     "ph": { "source": "producthunt", "medium": "social" },
     "td": { "source": "tildes", "medium": "social" },
+    "bgg": { "source": "boardgamegeek", "medium": "social" },
     "pr": { "source": "press", "medium": "referral" }
   },
 
@@ -18,6 +19,8 @@
     { "code": "ig", "campaign": "bio", "note": "Instagram bio link" },
     { "code": "rd", "campaign": "posts", "note": "Reddit post and comments" },
     { "code": "ph", "campaign": "launch", "note": "Product Hunt launch" },
-    { "code": "td", "campaign": "tildes", "note": "Tildes post" }
+    { "code": "td", "campaign": "tildes", "note": "Tildes post" },
+    { "code": "bgg", "campaign": "bgg", "note": "BoardGameGeek posts" },
+    { "code": "pr", "campaign": "press", "note": "Press coverage" }
   ]
 }
