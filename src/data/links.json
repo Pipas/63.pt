@@ -7,7 +7,8 @@
     "ph": { "source": "producthunt", "medium": "social" },
     "td": { "source": "tildes", "medium": "social" },
     "bgg": { "source": "boardgamegeek", "medium": "social" },
-    "pr": { "source": "press", "medium": "referral" }
+    "pr": { "source": "press", "medium": "referral" },
+    "hn": { "source": "hackernews", "medium": "social" }
   },
 
   "links": [
@@ -21,6 +22,7 @@
     { "code": "ph", "campaign": "launch", "note": "Product Hunt launch" },
     { "code": "td", "campaign": "tildes", "note": "Tildes post" },
     { "code": "bgg", "campaign": "bgg", "note": "BoardGameGeek posts" },
-    { "code": "pr", "campaign": "press", "note": "Press coverage" }
+    { "code": "pr", "campaign": "press", "note": "Press coverage" },
+    { "code": "hn", "campaign": "hn", "note": "Hacker News post" }
   ]
 }
