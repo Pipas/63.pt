@@ -361,12 +361,6 @@ img {
   margin: 0 0 28px;
   opacity: 0.92;
 }
-.hero .pill-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 18px;
-  flex-wrap: wrap;
-}
 .hero-phone-wrap {
   position: relative;
   display: flex;
@@ -727,26 +721,20 @@ h2.section-title {
   gap: 18px;
 }
 .packs-features .pf {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: var(--green-dark);
   border-radius: var(--r-md);
   padding: 26px;
-  backdrop-filter: blur(4px);
 }
-.packs-features .pf .icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  background: var(--white);
-  color: var(--green-deeper);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.packs-features .pf-emoji {
+  display: block;
+  width: 56px;
+  height: 56px;
   margin-bottom: 14px;
+  transform: rotate(-8deg);
+  user-select: none;
 }
-.packs-features .pf .icon svg {
-  width: 26px;
-  height: 26px;
+.packs-features .pf:nth-child(2) .pf-emoji {
+  transform: rotate(6deg);
 }
 .packs-features .pf h4 {
   font-weight: 500;

@@ -75,19 +75,16 @@ function packTiles(t) {
     .join('');
 }
 
-// Feature icons for the packs.63.pt section, keyed to the locale's feature order.
-const FEATURE_ICONS = [
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"/><path d="M13.5 6.5l4 4"/></svg>',
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"/><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M17 10h2a2 2 0 0 1 2 2v1"/><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M3 13v-1a2 2 0 0 1 2 -2h2"/></svg>',
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M15 6a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M15 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M8.7 10.7l6.6 -3.4"/><path d="M8.7 13.3l6.6 3.4"/></svg>',
-];
+// Feature emoji for the packs.63.pt section (same Fluent artwork as the pack
+// tiles), keyed to the locale's feature order.
+const FEATURE_EMOJI = ['memo', 'handshake', 'megaphone'];
 
 function packFeatures(t) {
   return t.make.features
     .map(
       (f, i) => `
             <div class="pf">
-              <div class="icon" aria-hidden="true">${FEATURE_ICONS[i]}</div>
+              <img class="pf-emoji" src="/assets/emoji/${FEATURE_EMOJI[i]}.svg" alt="" />
               <h4>${f.title}</h4>
               <p>${f.body}</p>
             </div>`
@@ -415,11 +412,6 @@ ${analytics(ctx.umami)}
       <section class="bg-green hero" id="top">
         <div class="hero-inner">
           <div>
-            <div class="pill-row">
-              <span class="pill solid">${t.hero.pills[0]}</span>
-              <span class="pill">${t.hero.pills[1]}</span>
-              <span class="pill">${t.hero.pills[2]}</span>
-            </div>
             <div class="logo63 logo-giant" aria-hidden="true">63</div>
             <h1 class="tagline">${t.hero.taglineTop}<br />${t.hero.taglineBottom}</h1>
             <p class="sub">${t.hero.sub}</p>
